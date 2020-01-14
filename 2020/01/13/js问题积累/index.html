@@ -131,7 +131,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    841 字
+                    1.2k 字
                   </span>&nbsp;
                 
 
@@ -139,7 +139,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      3 分钟
+                      4 分钟
                   </span>&nbsp;
                 
 
@@ -219,6 +219,31 @@ s = null;</code></pre><p>第一步: 创建Object类实例。注意为什么不�
 <p>整个过程中体现了<strong>基本包装类型</strong>的性质，而基本包装类型是属于基本数据类型 包括boolean，number，string。（红宝书p118）</p>
 <hr>
 <h2 id="5-0-1-0-2为什么不等于0-3？"><a href="#5-0-1-0-2为什么不等于0-3？" class="headerlink" title="5. 0.1+0.2为什么不等于0.3？"></a><strong>5. 0.1+0.2为什么不等于0.3？</strong></h2><p>0.1和0.2在转换成二进制后会无限循环，由于标准位数的限制后面多余的位数会被截掉，此时就已经出现了精度的损失，相加后因浮点数小数位的限制而截断的二进制数字在转换为十进制就会变成0.30000000000000004。<br><img src="https://github.com/jiangjie1105/img-hexo/blob/master/0.1+0.2.png?raw=true" srcset="/img/loading.gif" alt="image"></p>
+<hr>
+<h2 id="5-如何理解bignit？"><a href="#5-如何理解bignit？" class="headerlink" title="5.如何理解bignit？"></a><strong>5.如何理解bignit？</strong></h2><ul>
+<li>我所理解的bigint，简单来说就是一种新的数据类型 目前还没有广泛使用 即整数值大于number数据类型支持的范围时，可以使用bigint<h3 id="1-bigint的创建"><a href="#1-bigint的创建" class="headerlink" title="1.bigint的创建"></a><strong>1.bigint的创建</strong></h3></li>
+</ul>
+<ol>
+<li>可以在数字末尾加n<pre><code>console.log(9048394789734987n)</code></pre></li>
+<li>可以用bigint（）构造函数，<pre><code>BigInt(&quot;3432423423242342&quot;);//3432423423242342</code></pre>简单使用如下<br>```<br>10n + 20n;    // → 30n<br>10n - 20n;    // → -10n    </li>
+</ol>
+<p>+10n;         // → TypeError: Cannot convert a BigInt value to a number<br>-10n;         // → -10n<br>10n * 20n;    // → 200n<br>20n / 10n;    // → 2n<br>23n % 10n;    // → 3n<br>10n ** 3n;    // → 1000n    </p>
+<p>```</p>
+<h3 id="需要注意的点"><a href="#需要注意的点" class="headerlink" title="需要注意的点"></a>需要注意的点</h3><ol>
+<li><p>BigInt不支持一元加号运算符, 这可能是某些程序可能依赖于 + 始终生成 Number 的不变量，或者抛出异常。另外，更改 + 的行为也会破坏 asm.js代码。</p>
+</li>
+<li><p>因为隐式类型转换可能丢失信息，所以不允许在bigint和 Number 之间进行混合操作。当混合使用大整数和浮点数时，结果值可能无法由BigInt或Number精确表示。</p>
+</li>
+<li><p>不能将BigInt传递给Web api和内置的 JS 函数，这些函数需要一个 Number 类型的数字。尝试这样做会报TypeError错误。</p>
+</li>
+<li><p>当 Boolean 类型与 BigInt 类型相遇时，BigInt的处理方式与Number类似，换句话说，只要不是0n，BigInt就被视为truthy的值。</p>
+</li>
+<li><p>元素都为BigInt的数组可以进行sort。</p>
+</li>
+<li><p>BigInt可以正常地进行位运算，如|、&amp;、&lt;&lt;、&gt;&gt;和^</p>
+<h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a><strong>浏览器兼容性</strong></h2></li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2019/10/22/16df110a69c0ae17?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" srcset="/img/loading.gif" alt=""></p>
 
             <hr>
           </div>
