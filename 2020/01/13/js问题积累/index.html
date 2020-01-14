@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="jiangjie">
   <meta name="keywords" content="">
-  <title>js数据类型 ~ 诗酒趁年华</title>
+  <title>js数据类型--概念 ~ 诗酒趁年华</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -131,7 +131,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    530 字
+                    511 字
                   </span>&nbsp;
                 
 
@@ -139,7 +139,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      1 分钟
                   </span>&nbsp;
                 
 
@@ -192,11 +192,17 @@
 </ol>
 <p><img src="http://resource.muyiy.cn/image/2019-07-24-060214.png" srcset="/img/loading.gif" alt="栈内存和堆内存"></p>
 <p>下面看几个问题</p>
-<h3 id="问题1"><a href="#问题1" class="headerlink" title="问题1."></a>问题1.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; 20;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">b &#x3D; 30;</span><br><span class="line">&#x2F;&#x2F;a值为多少？？</span><br></pre></td></tr></table></figure>
-<p>a，b都是基本数据类型 ，他们的值存在栈中，ab分别有自己的栈空间，所以修改了b 的值以后，a的值并不会发生变化</p>
-<h3 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123;&quot;name: 刘德华&quot;&#125;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">b.name &#x3D; &#123;&quot;张学友&quot;&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>a,b 此时都是引用数据类型栈内存中存放地址指向对内存中的对象，引用类型的复制会为新的变量自动分配一个新的值保存在变量对象中，但只是引用类型的一个地址指针而已，实际指向的是同一个对象 所以修改b.name的值后，相应的a.name也发生了改变<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; &#123; name: &#39;前端开发&#39; &#125;</span><br><span class="line">var b &#x3D; a;</span><br><span class="line">a &#x3D; null;</span><br><span class="line">&#x2F;&#x2F;这时b值是多少</span><br></pre></td></tr></table></figure></li>
+<h3 id="问题1"><a href="#问题1" class="headerlink" title="问题1."></a>问题1.</h3><pre><code>var a = 20;
+var b = a;
+b = 30;
+//a值为多少？？</code></pre><p>a，b都是基本数据类型 ，他们的值存在栈中，ab分别有自己的栈空间，所以修改了b 的值以后，a的值并不会发生变化</p>
+<h3 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h3><pre><code>var a = {&quot;name: 刘德华&quot;}
+var b = a;
+b.name = {&quot;张学友&quot;} </code></pre><ul>
+<li>a,b 此时都是引用数据类型栈内存中存放地址指向对内存中的对象，引用类型的复制会为新的变量自动分配一个新的值保存在变量对象中，但只是引用类型的一个地址指针而已，实际指向的是同一个对象 所以修改b.name的值后，相应的a.name也发生了改变<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><pre><code>var a = { name: &#39;前端开发&#39; }
+var b = a;
+a = null;
+//这时b值是多少</code></pre></li>
 <li>首先null是基本数据类型，a = null 之后只是把a存储在栈内存中的地址改成了基本类型null，并不会影响堆内存中的对象，所以b的值不受影响。</li>
 </ul>
 
@@ -359,7 +365,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "js数据类型&nbsp;",
+        "js数据类型--概念&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
