@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>js数据类型-检测</title>
+    <link href="/2020/01/14/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E6%A3%80%E6%B5%8B/"/>
+    <url>/2020/01/14/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E6%A3%80%E6%B5%8B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="1-typeof是否能正确判断类型"><a href="#1-typeof是否能正确判断类型" class="headerlink" title="1.typeof是否能正确判断类型"></a><strong>1.typeof是否能正确判断类型</strong></h2><a id="more"></a><p>对于原始类型，除了null都可以调用typeof显示正确的类型。</p><pre><code>typeof 1 // &#39;number&#39;typeof &#39;1&#39; // &#39;string&#39;typeof undefined // &#39;undefined&#39;typeof true // &#39;boolean&#39;typeof Symbol() // &#39;symbol&#39;</code></pre><p>但对于引用数据类型，除了函数之外，都会显示“object“</p><pre><code>typeof [] // &#39;object&#39;typeof {} // &#39;object&#39;typeof console.log // &#39;function&#39;</code></pre><p>所以采用typeof判断数据类型是不合适的，而采用instanceof会更好，instanceof的原理是基于原型链的查询，只要处于原形链中，判断永远为true</p><pre><code>const Person = function() {}const p1 = new Person()p1 instanceof Person // truevar str1 = &#39;hello world&#39;str1 instanceof String // falsevar str2 = new String(&#39;hello world&#39;)str2 instanceof String // true</code></pre><h2 id="2-instanceof能否判断基本数据类型？"><a href="#2-instanceof能否判断基本数据类型？" class="headerlink" title="2.instanceof能否判断基本数据类型？"></a><strong>2.instanceof能否判断基本数据类型？</strong></h2><ul><li>答 可以，例如</li></ul><pre><code>class PrimitiveNumber {  static [Symbol.hasInstance](x) {    return typeof x === &#39;number&#39;  }}console.log(111 instanceof PrimitiveNumber) // true</code></pre><p>(上面的代码暂时看不懂，回头来解决)</p><h2 id="3-手动实现一下instanceof"><a href="#3-手动实现一下instanceof" class="headerlink" title="3.手动实现一下instanceof?"></a><strong>3.手动实现一下instanceof?</strong></h2><ul><li><strong>核心原型链的向上查找</strong><h2 id="4-Object-is和-的区别"><a href="#4-Object-is和-的区别" class="headerlink" title="4.Object.is和===的区别"></a><strong>4.Object.is和===的区别</strong></h2>(占坑 稍后填<br>)</li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数据结构-复杂度分析（下）</title>
     <link href="/2020/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
     <url>/2020/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
