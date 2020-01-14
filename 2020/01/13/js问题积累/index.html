@@ -131,7 +131,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    511 字
+                    841 字
                   </span>&nbsp;
                 
 
@@ -139,7 +139,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      1 分钟
+                      3 分钟
                   </span>&nbsp;
                 
 
@@ -184,7 +184,7 @@
 <li>bigint</li>
 </ul>
 <h2 id="2-引用数据类型"><a href="#2-引用数据类型" class="headerlink" title="2.引用数据类型"></a>2.引用数据类型</h2><ul>
-<li>对象object(包含普通对象-object 数组对象-array，正则对象-regexp，日期对象date，数学函数-math 函数对象-fuction)<h2 id="变量的存放"><a href="#变量的存放" class="headerlink" title="变量的存放"></a>变量的存放</h2></li>
+<li>对象object(包含普通对象-object 数组对象-array，正则对象-regexp，日期对象date，数学函数-math 函数对象-fuction)<h3 id="变量的存放"><a href="#变量的存放" class="headerlink" title="变量的存放"></a>变量的存放</h3></li>
 </ul>
 <ol>
 <li>基本数据类型 保存在<strong>栈</strong>内存中，因为这些类型在内存中分别有固定的大小，通过按值来访问</li>
@@ -205,6 +205,20 @@ a = null;
 //这时b值是多少</code></pre></li>
 <li>首先null是基本数据类型，a = null 之后只是把a存储在栈内存中的地址改成了基本类型null，并不会影响堆内存中的对象，所以b的值不受影响。</li>
 </ul>
+<hr>
+<h2 id="3-null是对象吗，为什么？"><a href="#3-null是对象吗，为什么？" class="headerlink" title="3.null是对象吗，为什么？"></a><strong>3.null是对象吗，为什么？</strong></h2><ul>
+<li>null不是对象 虽然typeof null会输出object 但是这时js存在的一个bug 再js最初版本是32位系统，为了性能考虑使用低位存储变量的类型信息，000开头代表的是对象然而null表示全零，所以它错误的判断为object。</li>
+</ul>
+<hr>
+<h2 id="4-toString（）为什么可以调用？"><a href="#4-toString（）为什么可以调用？" class="headerlink" title="4.toString（）为什么可以调用？"></a><strong>4.toString（）为什么可以调用？</strong></h2><p>请看下面代码</p>
+<pre><code>var s = new Object(&#39;1&#39;);
+s.tostring();
+s = null;</code></pre><p>第一步: 创建Object类实例。注意为什么不是String ？ 由于Symbol和BigInt的出现，对它们调用new都会报错，目前ES6规范也不建议用new来创建基本类型的包装类。</p>
+<p>第二步: 调用实例方法。</p>
+<p>第三步: 执行完方法立即销毁这个实例。</p>
+<p>整个过程中体现了<strong>基本包装类型</strong>的性质，而基本包装类型是属于基本数据类型 包括boolean，number，string。（红宝书p118）</p>
+<hr>
+<h2 id="5-0-1-0-2为什么不等于0-3？"><a href="#5-0-1-0-2为什么不等于0-3？" class="headerlink" title="5. 0.1+0.2为什么不等于0.3？"></a><strong>5. 0.1+0.2为什么不等于0.3？</strong></h2><p>0.1和0.2在转换成二进制后会无限循环，由于标准位数的限制后面多余的位数会被截掉，此时就已经出现了精度的损失，相加后因浮点数小数位的限制而截断的二进制数字在转换为十进制就会变成0.30000000000000004。<br><img src="https://github.com/jiangjie1105/img-hexo/blob/master/0.1+0.2.png?raw=true" srcset="/img/loading.gif" alt="image"></p>
 
             <hr>
           </div>

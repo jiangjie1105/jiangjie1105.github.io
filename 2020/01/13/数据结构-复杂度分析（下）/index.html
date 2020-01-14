@@ -187,7 +187,7 @@ int find(int[] array, int n, int x) {
 <h2 id="2-最坏情况时间复杂度"><a href="#2-最坏情况时间复杂度" class="headerlink" title="2.最坏情况时间复杂度"></a>2.最坏情况时间复杂度</h2><p>同理，在最糟糕的情况下 如果我想要查找的元素变量x，在数组中没有，则需要把整个数组遍历一遍，这种比较糟糕的情况下，对应的时间复杂度就是最坏时间复杂度。</p>
 <h2 id="3-平均情况时间复杂度"><a href="#3-平均情况时间复杂度" class="headerlink" title="3.平均情况时间复杂度"></a>3.平均情况时间复杂度</h2><p>在一般的代码中 最好情况复杂度和最坏情况复杂度对应的都是比较极端的情况，并不常见，所以需要引入另一个概念，<strong>平均时间复杂度</strong></p>
 <ul>
-<li>举例<br>如上面的代码，<br>要查找的变量x在数组中的位置有n+1种情况，<strong>从0索引到n-1索引或者不在数组中</strong>，这种情况，查找需要遍历的元素个数累加起来，再除以<strong>n+1</strong> 就可以得到需要遍历的元素个数平均值，即<br><img src="https://github.com/jiangjie1105/img-hexo/blob/master/1.png?raw=true" srcset="/img/loading.gif" alt="iamge"></li>
+<li>举例<br>如上面的代码，<br>要查找的变量x在数组中的位置有n+1种情况，<strong>从0索引到n-1索引或者不在数组中</strong>，这种情况，查找需要遍历的元素个数累加起来，再除以<strong>n+1</strong> 就可以得到需要遍历的元素个数平均值，即<br><img src="https://github.com/jiangjie1105/img-hexo/blob/master/1.png?raw=true" srcset="/img/loading.gif" alt="image"></li>
 </ul>
 <p>这个值就是概率论中的加权平均值，也叫期望值，所以平均时间复杂度的全称应该叫<strong>加权平均时间复杂度</strong>或者<strong>期望时间复杂度</strong></p>
 <h2 id="4-均摊时间复杂度"><a href="#4-均摊时间复杂度" class="headerlink" title="4.均摊时间复杂度"></a>4.均摊时间复杂度</h2><p>（未填坑）</p>
