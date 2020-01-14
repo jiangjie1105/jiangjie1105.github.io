@@ -131,7 +131,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    384 字
+                    472 字
                   </span>&nbsp;
                 
 
@@ -139,7 +139,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      1 分钟
+                      2 分钟
                   </span>&nbsp;
                 
 
@@ -172,7 +172,9 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="1-js函数"><a href="#1-js函数" class="headerlink" title="1.js函数"></a>1.js函数</h1><h2 id="1-函数定义"><a href="#1-函数定义" class="headerlink" title="1. 函数定义"></a>1. 函数定义</h2><p>函数使用function定义，后跟一组参数及函数体 ，语法如下</p>
+            <h1 id="1-js函数"><a href="#1-js函数" class="headerlink" title="1.js函数"></a>1.js函数</h1><a id="more"></a>
+
+<h2 id="1-函数定义"><a href="#1-函数定义" class="headerlink" title="1. 函数定义"></a>1. 函数定义</h2><p>函数使用function定义，后跟一组参数及函数体 ，语法如下</p>
 <pre><code>function functionName([arg]){
 
 }//arg为函数的参数，不是语法</code></pre><p>如</p>
@@ -230,7 +232,20 @@ alert(add(23,33));
 </ol>
 <h3 id="1-如何创建数组"><a href="#1-如何创建数组" class="headerlink" title="1.如何创建数组"></a>1.如何创建数组</h3><ol>
 <li>使用Array构造函数<br>语法new Array（）</li>
+<li>color.push(“blue”，”yellow”)<br>push方法可以把参数添加到数组的最后<br>unshift可以把参数添加到数组的开头<pre><code>&lt;script&gt;
+     //push
+     var colors = new Array(&quot;red&quot;, &quot;blue&quot;, &quot;yellow&quot;);
+     var len = colors.push(&quot;black&quot;, &quot;orange&quot;)
+     //unshift
+     var nums = [2, 3, 4, 5, 6];
+     var size = nums.unshift(1, 0);
+     console.log(nums);
+     console.log(colors);
+ &lt;/script&gt;</code></pre></li>
 </ol>
+<ul>
+<li><strong>结果如下</strong><br><img src="https://github.com/jiangjie1105/img-hexo/blob/master/2.png?raw=true" srcset="/img/loading.gif" alt=""></li>
+</ul>
 <h1 id="3-jsDOM基础"><a href="#3-jsDOM基础" class="headerlink" title="3.jsDOM基础"></a>3.jsDOM基础</h1><h1 id="4-jsDom事件"><a href="#4-jsDom事件" class="headerlink" title="4.jsDom事件"></a>4.jsDom事件</h1><h1 id="5-jsBom对象"><a href="#5-jsBom对象" class="headerlink" title="5.jsBom对象"></a>5.jsBom对象</h1><h1 id="6-js实现轮播特效"><a href="#6-js实现轮播特效" class="headerlink" title="6.js实现轮播特效"></a>6.js实现轮播特效</h1>
             <hr>
           </div>
