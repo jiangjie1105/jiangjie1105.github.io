@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>作用域闭包</title>
+    <link href="/2020/01/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/"/>
+    <url>/2020/01/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="深入浅出理解作用域链和闭包"><a href="#深入浅出理解作用域链和闭包" class="headerlink" title="深入浅出理解作用域链和闭包"></a>深入浅出理解作用域链和闭包</h1><ol><li>闭包的定义：</li></ol><p>闭包是指有权访问另一个函数作用域中的变量的函数，关键在以下两点：</p><ul><li>1.闭包是一个函数</li><li>2.闭包能访问另外一个函数的作用域中的变量。</li></ul><ol start="2"><li>闭包的特性</li></ol><ul><li>1.闭包可以访问当前函数以外的变量：<pre><code>function getOuter(){var name = &quot;zhangsan&quot;function getName(str){  console.log(str + name);</code></pre></li></ul><p>}<br>return getName(‘名字：’);</p><p>}<br>getOuter();</p><pre><code>- 2.即使外部函数已经返回，闭包仍能访问外部函数定义的变量</code></pre><p>function getOuter(){<br>  var date = ‘815’;<br>  function getDate(str){<br>    console.log(str + date);  //访问外部的date<br>  }<br>  return getDate;     //外部函数返回<br>}<br>var today = getOuter();<br>today(‘今天是：’);   //“今天是：815”<br>today(‘明天不是：’);   //“明天不是：815”</p><pre><code>- 3. 闭包可以更新外部变量的值</code></pre><p>function updateCount(){<br>  var count = 0;<br>  function getCount(val){<br>    count = val;<br>    console.log(count);<br>  }<br>  return getCount;     //外部函数返回<br>}<br>var count = updateCount();<br>count(815); //815<br>count(816); //816</p><pre><code>## 1.作用域链当访问一个变量时，解释器会首先在当前作用域查找标示符，如果没有找到，就去父作用域找，直到找到该变量的标示符或者不在父作用域中，这就是作用域链。**作用域链和原型继承查找的区别：**如果取查找一个普通对象的属性，但是在当前对象和原型中都找不到时，就会返回undefined；但查找的属性在作用域链中不存在的话就会抛出ReferenceError。作用域链的顶端是全局对象，在全局环境中定义的变量就会绑定到全局对象中。# JavaScript深入之从作用域链理解闭包# JavaScript深入之闭包面试题解</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaScript深入执行上下文和变量对象</title>
     <link href="/2020/01/16/JavaScript%E6%B7%B1%E5%85%A5%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/"/>
     <url>/2020/01/16/JavaScript%E6%B7%B1%E5%85%A5%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/</url>
