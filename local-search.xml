@@ -8,7 +8,7 @@
     <link href="/2020/01/19/this%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/"/>
     <url>/2020/01/19/this%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>this的绑定规则总共有下面五种：</p><ul><li>1.默认绑定（严格/非严格模式）</li><li>2.隐式绑定</li><li>3.显示绑定</li><li>4.new绑定</li><li>5.箭头函数绑定</li></ul><h1 id="1-调用位置"><a href="#1-调用位置" class="headerlink" title="1.调用位置"></a>1.调用位置</h1><p>调用位置就是函数在代码中<font color="red"><strong>被调用的位置</strong></font>(而不是声明的位置)。</p><p>查找方法：</p><ul><li>分析调用栈：调用位置就是当前正在执行的函数的<strong>前一个调用</strong>中</li></ul><pre><code>function baz() {    // 当前调用栈是：baz    // 因此，当前调用位置是全局作用域    console.log( &quot;baz&quot; );    bar(); // &lt;-- bar的调用位置}function bar() {    // 当前调用栈是：baz --&gt; bar    // 因此，当前调用位置在baz中    console.log( &quot;bar&quot; );    foo(); // &lt;-- foo的调用位置}function foo() {    // 当前调用栈是：baz --&gt; bar --&gt; foo    // 因此，当前调用位置在bar中    console.log( &quot;foo&quot; );}baz(); // &lt;-- baz的调用位置</code></pre><ul><li>使用开发者工具得到调用栈：<br>设置断点或者插入debugger；语句，运行时调试器会在那个位置暂停，同时展示当前位置的函数调用列表，这就是<font color="red">调用栈</font>，找到栈中的<font color="red">第二个元素</font>，这就是真正的调用位置。</li></ul><h1 id="2-绑定规则"><a href="#2-绑定规则" class="headerlink" title="2.绑定规则"></a>2.绑定规则</h1>]]></content>
     
     
     

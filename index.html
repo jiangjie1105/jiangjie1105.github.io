@@ -152,7 +152,40 @@
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1"></div>
+          <div class="index-text mb-1">this的绑定规则总共有下面五种：
+
+1.默认绑定（严格/非严格模式）
+2.隐式绑定
+3.显示绑定
+4.new绑定
+5.箭头函数绑定
+
+1.调用位置调用位置就是函数在代码中被调用的位置(而不是声明的位置)。
+查找方法：
+
+分析调用栈：调用位置就是当前正在执行的函数的前一个调用中
+
+function baz() {
+    // 当前调用栈是：baz
+    // 因此，当前调用位置是全局作用域
+
+    console.log( &quot;baz&quot; );
+    bar(); // &lt;-- bar的调用位置
+}
+
+function bar() {
+    // 当前调用栈是：baz --&gt; bar
+    // 因此，当前调用位置在baz中
+
+    console.log( &quot;bar&quot; );
+    foo(); // &lt;-- foo的调用位置
+}
+
+function foo() {
+    // 当前调用栈是：baz --&gt; bar --&gt; foo
+    // 因此，当前调用位置在bar中
+
+    console.l</div>
         </div>
       </a>
 
