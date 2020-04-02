@@ -131,7 +131,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    894 字
+                    864 字
                   </span>&nbsp;
                 
 
@@ -174,8 +174,17 @@
           <div class="markdown-body">
             <p>如下代码</p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int cal (int n) &#123;</span><br><span class="line">    int sum &#x3D; 0;</span><br><span class="line">    int i &#x3D; 1;</span><br><span class="line">    int j &#x3D; 1;</span><br><span class="line">    for (;i &lt; &#x3D; n ; i++)&#123;</span><br><span class="line">        j &#x3D; 1;</span><br><span class="line">        for (; j&lt;&#x3D; n; ++j) &#123;</span><br><span class="line">            sum &#x3D; sum + i*j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码二三四行都需要一个unit_time 执行时间，五六行循环执行了n遍，需要2n×unit_time执行时间 第七八行执行了n²次 所以总时间等于(2n²＋2n＋3)*unit_time</p>
+<pre><code>int cal (int n) {
+    int sum = 0;
+    int i = 1;
+    int j = 1;
+    for (;i &lt; = n ; i++){
+        j = 1;
+        for (; j&lt;= n; ++j) {
+            sum = sum + i*j;
+        }
+    }
+}</code></pre><p>以上代码二三四行都需要一个unit_time 执行时间，五六行循环执行了n遍，需要2n×unit_time执行时间 第七八行执行了n²次 所以总时间等于(2n²＋2n＋3)*unit_time</p>
 <h2 id="1-大o复杂度表示法"><a href="#1-大o复杂度表示法" class="headerlink" title="1.大o复杂度表示法"></a>1.大o复杂度表示法</h2><h3 id="读数据–运算–写数据"><a href="#读数据–运算–写数据" class="headerlink" title="读数据–运算–写数据"></a>读数据–运算–写数据</h3><p>从cpu角度来讲 每一行都执行着类似操作 大o时间复杂度实际上不是代码的具体执行时间 而是表示代码执行时间随数据规模增长的变化趋势 所以也叫 <strong>渐进时间复杂度</strong> 也称<strong>时间复杂度</strong></p>
 <h2 id="2-时间复杂度分析"><a href="#2-时间复杂度分析" class="headerlink" title="2.时间复杂度分析"></a>2.时间复杂度分析</h2><ol>
 <li><p>只关注时间复杂度次数最多的一段代码，分析一段代码的时间复杂度时，也只关注循环执行次数最多的那一段代码就行了。</p>
@@ -201,8 +210,10 @@
 <p>0（1）只是时间复杂度的一种表示方法，不是执行了一行代码所以 只要语句中不存在循环语句，递归语句，即使有成千上万行代码 时间复杂度都是0（1）.</p>
 <ol start="2">
 <li><p>O(logn)、O(nlogn)<br>如下面这段代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i &#x3D; 1 ;</span><br><span class="line">while (i &lt;&#x3D; n) &#123;</span><br><span class="line">    i &#x3D; i * 2；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面代码中实际上就是i的值开始时是1，之后每次循环都乘二 相当于2的x次方等于n ，所以时间复杂度为以2为底log n, <strong>因为对数之间可以互相转换 所以采用大0标记复杂度的时候 可以忽略系数，即 O(Cf(n)) = O(f(n))。</strong></p>
+<pre><code>i = 1 ;
+while (i &lt;= n) {
+ i = i * 2；
+}</code></pre><p>上面代码中实际上就是i的值开始时是1，之后每次循环都乘二 相当于2的x次方等于n ，所以时间复杂度为以2为底log n, <strong>因为对数之间可以互相转换 所以采用大0标记复杂度的时候 可以忽略系数，即 O(Cf(n)) = O(f(n))。</strong></p>
 <ul>
 <li>o（ologn）</li>
 </ul>
@@ -211,8 +222,22 @@
 <li>o（m+n），o（m*n）</li>
 </ol>
 <p>代码的复杂度<strong>由两个数据规模</strong>来决定 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int cal(int m, int n) &#123;</span><br><span class="line">    int sum_1 &#x3D; 0; </span><br><span class="line">    int i &#x3D; 1; </span><br><span class="line">    for (; i &lt; m; ++i) &#123;</span><br><span class="line">    sum_1 &#x3D; sum_1 + i;  </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    int sum_2 &#x3D; 0; </span><br><span class="line">    int j &#x3D; 1;  </span><br><span class="line">    for (; j &lt; n; ++j) &#123;</span><br><span class="line">        sum_2 &#x3D; sum_2 + j;  </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">  return sum_1 + sum_2; </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>上面的代码中 m和n是两个数据规模 我们无法评估谁的量级大所以在表示 时间复杂度时就不能用加法准则，所以上面的代码时间复杂的就是0（m+n）<br>所以针对上面的情况，加法规则就不正确了，<br>需要改为<strong>T1(m)+T2(n)=o(f(m) + g(n))</strong> 乘法规则继续有效。</p>
+<pre><code>int cal(int m, int n) {
+ int sum_1 = 0; 
+ int i = 1; 
+ for (; i &lt; m; ++i) {
+ sum_1 = sum_1 + i;  
+ }
+
+ int sum_2 = 0; 
+ int j = 1;  
+ for (; j &lt; n; ++j) {
+     sum_2 = sum_2 + j;  
+ }
+
+return sum_1 + sum_2; 
+}
+</code></pre><p>上面的代码中 m和n是两个数据规模 我们无法评估谁的量级大所以在表示 时间复杂度时就不能用加法准则，所以上面的代码时间复杂的就是0（m+n）<br>所以针对上面的情况，加法规则就不正确了，<br>需要改为<strong>T1(m)+T2(n)=o(f(m) + g(n))</strong> 乘法规则继续有效。</p>
 </li>
 </ol>
 <ul>
