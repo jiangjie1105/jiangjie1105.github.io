@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     诗酒趁年华
+     末了
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -53,7 +53,7 @@
       <img src="/images/cover1.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
-      <h1><a href="/">诗酒趁年华</a></h1>
+      <h1><a href="/">末了</a></h1>
       <div id="subtitle-box">
         
         <span id="subtitle"></span>
@@ -111,19 +111,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="2-1-ES6环境搭建"><a href="#2-1-ES6环境搭建" class="headerlink" title="2.1.ES6环境搭建"></a>2.1.ES6环境搭建</h1>
-      
-      <a class="article-more-link" href="/2020/04/22/es6/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -179,16 +166,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -244,56 +221,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>this的绑定规则总共有下面五种：</p>
-<ul>
-<li>1.默认绑定（严格/非严格模式）</li>
-<li>2.隐式绑定</li>
-<li>3.显示绑定</li>
-<li>4.new绑定</li>
-<li>5.箭头函数绑定</li>
-</ul>
-<h1 id="1-调用位置"><a href="#1-调用位置" class="headerlink" title="1.调用位置"></a>1.调用位置</h1><p>调用位置就是函数在代码中<font color="red"><strong>被调用的位置</strong></font>(而不是声明的位置)。</p>
-<p>查找方法：</p>
-<ul>
-<li>分析调用栈：调用位置就是当前正在执行的函数的<strong>前一个调用</strong>中</li>
-</ul>
-<pre><code>function baz() {
-    // 当前调用栈是：baz
-    // 因此，当前调用位置是全局作用域
-
-    console.log( &quot;baz&quot; );
-    bar(); // &lt;-- bar的调用位置
-}
-
-function bar() {
-    // 当前调用栈是：baz --&gt; bar
-    // 因此，当前调用位置在baz中
-
-    console.log( &quot;bar&quot; );
-    foo(); // &lt;-- foo的调用位置
-}
-
-function foo() {
-    // 当前调用栈是：baz --&gt; bar --&gt; foo
-    // 因此，当前调用位置在bar中
-
-    console.log( &quot;foo&quot; );
-}
-
-baz(); // &lt;-- baz的调用位置</code></pre><ul>
-<li>使用开发者工具得到调用栈：<br>设置断点或者插入debugger；语句，运行时调试器会在那个位置暂停，同时展示当前位置的函数调用列表，这就是<font color="red">调用栈</font>，找到栈中的<font color="red">第二个元素</font>，这就是真正的调用位置。</li>
-</ul>
-<h1 id="2-绑定规则"><a href="#2-绑定规则" class="headerlink" title="2.绑定规则"></a>2.绑定规则</h1><p>。。。。。</p>
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -349,20 +276,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="深入浅出理解作用域链和闭包"><a href="#深入浅出理解作用域链和闭包" class="headerlink" title="深入浅出理解作用域链和闭包"></a>深入浅出理解作用域链和闭包</h1><ol>
-<li>闭包的定义：
-      
-      <a class="article-more-link" href="/2020/01/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -418,16 +331,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -483,19 +386,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="1-js中的执行上下文和执行栈"><a href="#1-js中的执行上下文和执行栈" class="headerlink" title="1.js中的执行上下文和执行栈"></a>1.js中的执行上下文和执行栈</h1>
-      
-      <a class="article-more-link" href="/2020/01/16/%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -551,19 +441,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>1.jsDom</p>
-      
-      <a class="article-more-link" href="/2020/01/15/DOM/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -619,19 +496,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h1 id="1-js函数"><a href="#1-js函数" class="headerlink" title="1.js函数"></a>1.js函数</h1>
-      
-      <a class="article-more-link" href="/2020/01/14/js/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -687,19 +551,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h2 id="1-typeof是否能正确判断类型"><a href="#1-typeof是否能正确判断类型" class="headerlink" title="1.typeof是否能正确判断类型"></a><strong>1.typeof是否能正确判断类型</strong></h2>
-      
-      <a class="article-more-link" href="/2020/01/14/js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-%E6%A3%80%E6%B5%8B/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -755,19 +606,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <p>今天学习 四个复杂度分析</p>
-      
-      <a class="article-more-link" href="/2020/01/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%8B%EF%BC%89/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -865,7 +703,7 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="诗酒趁年华"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="末了"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -892,10 +730,6 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
     
     <li class="nav-item">
       <a class="nav-item-link" href="https://xiaojiang-1105.lofter.com/" target="_blank" rel="noopener">摄影</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/2019/about">关于我</a>
     </li>
     
   </ul>
@@ -951,7 +785,7 @@ baz(); // &lt;-- baz的调用位置</code></pre><ul>
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      strings: ['诗酒趁年华', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
       startDelay: 0,
       typeSpeed: 200,
       loop: true,
