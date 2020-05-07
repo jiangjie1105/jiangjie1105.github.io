@@ -162,36 +162,67 @@ const myAge//报错：SyntaxError: Missing initializer in const declaration  （
 //a = 1
 //b = 2
 //c = 3
-</code></pre></li>
+//可嵌套：
+let [a,[[b],c]] = [1,[[2],3]]
+//a = 1
+//b = 2
+//c = 3
+//可忽略：
+let [a, , b] = [1, 2, 3];
+// a = 1
+// b = 3
+//不完全解构
+let [a = 1, b] = []; // a = 1, b = undefined
+剩余运算符
+let [a, ...b] = [1, 2, 3];
+//a = 1
+//b = [2, 3]
+字符串：
+在数组解构中，解构的目标若为可遍历对象，皆可进行解构赋值/可遍历对象即实现lterator接口的数据
+let [a, b, c, d, e] = &#39;hello&#39;;
+// a = &#39;h&#39;
+// b = &#39;e&#39;
+// c = &#39;l&#39;
+// d = &#39;l&#39;
+// e = &#39;o&#39;
+解构默认值：
+let [a = 2] = [undefined]; // a = 2</code></pre></li>
 </ul>
-<p>//可嵌套：<br>let [a,[[b],c]] = [1,[[2],3]]<br>//a = 1<br>//b = 2<br>//c = 3</p>
-<p>//可忽略：<br>let [a, , b] = [1, 2, 3];<br>// a = 1<br>// b = 3</p>
-<p>//不完全解构<br>let [a = 1, b] = []; // a = 1, b = undefined</p>
-<p>剩余运算符<br>let [a, …b] = [1, 2, 3];<br>//a = 1<br>//b = [2, 3]</p>
-<p>字符串：<br>在数组解构中，解构的目标若为可遍历对象，皆可进行解构赋值/可遍历对象即实现lterator接口的数据<br>let [a, b, c, d, e] = ‘hello’;<br>// a = ‘h’<br>// b = ‘e’<br>// c = ‘l’<br>// d = ‘l’<br>// e = ‘o’</p>
-<p>解构默认值：<br>let [a = 2] = [undefined]; // a = 2</p>
-<pre><code># 2.3 ES6 Symbol
+<h1 id="2-3-ES6-Symbol"><a href="#2-3-ES6-Symbol" class="headerlink" title="2.3 ES6 Symbol"></a>2.3 ES6 Symbol</h1><p><strong>概述</strong><br>es6引入了一种新的数据类型Symbol，表示独一无二的值最大的用法是<strong>用来定义对象的唯一属性名</strong>。<br>基本用法：<br>Symbol函数栈不能用new命令，因为Symbol是原始数据类型，不是对象，可以接受一个字符串作为参数，为新创建的Symbol提供描述，用来显示在控制台或者作为字符串的时候使用，便于区分。</p>
+<pre><code>let sy = Symbol(&quot;KK&quot;);
+console.log(sy);   // Symbol(KK)
+typeof(sy);        // &quot;symbol&quot;
 
-**概述**
-es6引入了一种新的数据类型Symbol，表示独一无二的值最大的用法是**用来定义对象的唯一属性名**。
-基本用法：
-Symbol函数栈不能用new命令，因为Symbol是原始数据类型，不是对象，可以接受一个字符串作为参数，为新创建的Symbol提供描述，用来显示在控制台或者作为字符串的时候使用，便于区分。</code></pre><p>let sy = Symbol(“KK”);<br>console.log(sy);   // Symbol(KK)<br>typeof(sy);        // “symbol”</p>
-<p>// 相同参数 Symbol() 返回的值不相等<br>let sy1 = Symbol(“kk”);<br>sy === sy1;       // false</p>
-<pre><code>## 使用场景：
-- 作为属性名：
-由于每一个Symbol的值都是不相等的，所以Symbol作为对象的属性名，可以保证属性不重名。</code></pre><p>let sy = Symbol(“key1”);</p>
-<p>// 写法1<br>let syObject = {};<br>syObject[sy] = “kk”;<br>console.log(syObject);    // {Symbol(key1): “kk”}</p>
-<p>// 写法2<br>let syObject = {<br>  [sy]: “kk”<br>};<br>console.log(syObject);    // {Symbol(key1): “kk”}</p>
-<p>// 写法3<br>let syObject = {};<br>Object.defineProperty(syObject, sy, {value: “kk”});<br>console.log(syObject);   // {Symbol(key1): “kk”}</p>
-<pre><code> Symbol作为对象属性名时不能用运算符，要用方括号。因为运算符后面时字符串，所以取到的是字符串sy属性而不是Symbol值的sy属性
-</code></pre><p>let syObject = {};<br>syObject[sy] = “kk”;</p>
-<p>syObject[sy]; //“kk”<br>SyObject.sy;//undefined</p>
-<pre><code>## 注意点：
-Symbol 值作为属性名时，该属性是公有属性不是私有属性，可以在类的外部访问。但是不会出现在 for...in 、 for...of 的循环中，也不会被 Object.keys() 、 Object.getOwnPropertyNames() 返回。如果要读取到一个对象的 Symbol 属性，可以通过 Object.getOwnPropertySymbols() 和 Reflect.ownKeys() 取到。</code></pre><p>let syObject = {};<br>syObject[sy] = “kk”;<br>console.log(syObject);</p>
-<p>for (let i in syObject) {<br>  console.log(i);<br>}    // 无输出</p>
-<p>Object.keys(syObject);                     // []<br>Object.getOwnPropertySymbols(syObject);    // [Symbol(key1)]<br>Reflect.ownKeys(syObject);                 // [Symbol(key1)]</p>
-<p>```</p>
-<h1 id="3-1-1-ES6-Map-与-Set"><a href="#3-1-1-ES6-Map-与-Set" class="headerlink" title="3.1.1 ES6 Map 与 Set"></a>3.1.1 ES6 Map 与 Set</h1><h1 id="3-1-2-ES6-Reflect-与-Proxy"><a href="#3-1-2-ES6-Reflect-与-Proxy" class="headerlink" title="3.1.2 ES6 Reflect 与 Proxy"></a>3.1.2 ES6 Reflect 与 Proxy</h1><h1 id="3-2-1-ES6-字符串"><a href="#3-2-1-ES6-字符串" class="headerlink" title="3.2.1 ES6 字符串"></a>3.2.1 ES6 字符串</h1><h1 id="3-2-2-ES6-数值"><a href="#3-2-2-ES6-数值" class="headerlink" title="3.2.2 ES6 数值"></a>3.2.2 ES6 数值</h1><h1 id="3-2-3-ES6-对象"><a href="#3-2-3-ES6-对象" class="headerlink" title="3.2.3 ES6 对象"></a>3.2.3 ES6 对象</h1><h1 id="3-2-4-ES6-数组"><a href="#3-2-4-ES6-数组" class="headerlink" title="3.2.4 ES6 数组"></a>3.2.4 ES6 数组</h1><h1 id="4-1-ES6-函数"><a href="#4-1-ES6-函数" class="headerlink" title="4.1 ES6 函数"></a>4.1 ES6 函数</h1><h1 id="4-2-ES6-迭代器"><a href="#4-2-ES6-迭代器" class="headerlink" title="4.2 ES6 迭代器"></a>4.2 ES6 迭代器</h1><h1 id="4-3-ES6-Class-类"><a href="#4-3-ES6-Class-类" class="headerlink" title="4.3 ES6 Class 类"></a>4.3 ES6 Class 类</h1><h1 id="4-4-ES6-模块"><a href="#4-4-ES6-模块" class="headerlink" title="4.4 ES6 模块"></a>4.4 ES6 模块</h1><h1 id="5-1-ES6-Promise-对象"><a href="#5-1-ES6-Promise-对象" class="headerlink" title="5.1 ES6 Promise 对象"></a>5.1 ES6 Promise 对象</h1><h1 id="5-2-ES6-Generator-函数"><a href="#5-2-ES6-Generator-函数" class="headerlink" title="5.2 ES6 Generator 函数"></a>5.2 ES6 Generator 函数</h1><h1 id="5-3-ES6-async-函数"><a href="#5-3-ES6-async-函数" class="headerlink" title="5.3 ES6 async 函数"></a>5.3 ES6 async 函数</h1>
+// 相同参数 Symbol() 返回的值不相等
+let sy1 = Symbol(&quot;kk&quot;); 
+sy === sy1;       // false</code></pre><h2 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h2><ul>
+<li>作为属性名：<br>由于每一个Symbol的值都是不相等的，所以Symbol作为对象的属性名，可以保证属性不重名。<pre><code>let sy = Symbol(&quot;key1&quot;);
+// 写法1
+let syObject = {};
+syObject[sy] = &quot;kk&quot;;
+console.log(syObject);    // {Symbol(key1): &quot;kk&quot;}
+// 写法2
+let syObject = { [sy]: &quot;kk&quot;};
+console.log(syObject);    // {Symbol(key1): &quot;kk&quot;}
+// 写法3
+let syObject = {};
+Object.defineProperty(syObject, sy, {value: &quot;kk&quot;});
+console.log(syObject);   // {Symbol(key1): &quot;kk&quot;}</code></pre></li>
+</ul>
+<p> Symbol作为对象属性名时不能用运算符，要用方括号。因为运算符后面时字符串，所以取到的是字符串sy属性而不是Symbol值的sy属性</p>
+<pre><code>let syObject = {};
+syObject[sy] = &quot;kk&quot;;
+syObject[sy]; //&quot;kk&quot;
+SyObject.sy;//undefined</code></pre><h2 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h2><p>Symbol 值作为属性名时，该属性是公有属性不是私有属性，可以在类的外部访问。但是不会出现在 for…in 、 for…of 的循环中，也不会被 Object.keys() 、 Object.getOwnPropertyNames() 返回。如果要读取到一个对象的 Symbol 属性，可以通过 Object.getOwnPropertySymbols() 和 Reflect.ownKeys() 取到。</p>
+<pre><code>let syObject = {};
+syObject[sy] = &quot;kk&quot;;
+console.log(syObject);
+for (let i in syObject) {
+  console.log(i);
+}    // 无输出
+Object.keys(syObject);                     // []
+Object.getOwnPropertySymbols(syObject);    // [Symbol(key1)]
+Reflect.ownKeys(syObject);                 // [Symbol(key1)]</code></pre><h1 id="3-1-1-ES6-Map-与-Set"><a href="#3-1-1-ES6-Map-与-Set" class="headerlink" title="3.1.1 ES6 Map 与 Set"></a>3.1.1 ES6 Map 与 Set</h1><h1 id="3-1-2-ES6-Reflect-与-Proxy"><a href="#3-1-2-ES6-Reflect-与-Proxy" class="headerlink" title="3.1.2 ES6 Reflect 与 Proxy"></a>3.1.2 ES6 Reflect 与 Proxy</h1><h1 id="3-2-1-ES6-字符串"><a href="#3-2-1-ES6-字符串" class="headerlink" title="3.2.1 ES6 字符串"></a>3.2.1 ES6 字符串</h1><h1 id="3-2-2-ES6-数值"><a href="#3-2-2-ES6-数值" class="headerlink" title="3.2.2 ES6 数值"></a>3.2.2 ES6 数值</h1><h1 id="3-2-3-ES6-对象"><a href="#3-2-3-ES6-对象" class="headerlink" title="3.2.3 ES6 对象"></a>3.2.3 ES6 对象</h1><h1 id="3-2-4-ES6-数组"><a href="#3-2-4-ES6-数组" class="headerlink" title="3.2.4 ES6 数组"></a>3.2.4 ES6 数组</h1><h1 id="4-1-ES6-函数"><a href="#4-1-ES6-函数" class="headerlink" title="4.1 ES6 函数"></a>4.1 ES6 函数</h1><h1 id="4-2-ES6-迭代器"><a href="#4-2-ES6-迭代器" class="headerlink" title="4.2 ES6 迭代器"></a>4.2 ES6 迭代器</h1><h1 id="4-3-ES6-Class-类"><a href="#4-3-ES6-Class-类" class="headerlink" title="4.3 ES6 Class 类"></a>4.3 ES6 Class 类</h1><h1 id="4-4-ES6-模块"><a href="#4-4-ES6-模块" class="headerlink" title="4.4 ES6 模块"></a>4.4 ES6 模块</h1><h1 id="5-1-ES6-Promise-对象"><a href="#5-1-ES6-Promise-对象" class="headerlink" title="5.1 ES6 Promise 对象"></a>5.1 ES6 Promise 对象</h1><h1 id="5-2-ES6-Generator-函数"><a href="#5-2-ES6-Generator-函数" class="headerlink" title="5.2 ES6 Generator 函数"></a>5.2 ES6 Generator 函数</h1><h1 id="5-3-ES6-async-函数"><a href="#5-3-ES6-async-函数" class="headerlink" title="5.3 ES6 async 函数"></a>5.3 ES6 async 函数</h1>
       
       <!-- reward -->
       
