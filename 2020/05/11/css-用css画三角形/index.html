@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">605</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -172,8 +172,46 @@
           border-bottom: 300px solid #cc7eb1;
           border-left: 200px solid transparent;
           border-right: 200px solid transparent;
-      }</code></pre>当border-bottom变为300px时效果如下：<br><img src="http://imglf4.nosdn0.126.net/img/cE1DdHM4MDl2TGpERElvQUMzTmQwdmNmWWw4SlZ3MnZGejVsdmhoQjdwTEFBc3JoVEVnbW5RPT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg" alt=""><br>我们可以看到，成为了一个等边三角形</li>
+      }</code></pre>当border-bottom变为300px时效果如下：<br><img src="http://imglf4.nosdn0.126.net/img/cE1DdHM4MDl2TGpERElvQUMzTmQwdmNmWWw4SlZ3MnZGejVsdmhoQjdwTEFBc3JoVEVnbW5RPT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg" alt=""><br>我们可以看到，成为了一个等边三角形。我们增大border-bottom时，<br>三角形底边长不变，而底边的高在不断地变大，因为border-bottom-width其实就是底边的高：<br><img src="https://images2015.cnblogs.com/blog/818663/201610/818663-20161022165334842-128873170.jpg" alt=""></li>
+<li>然后再做第二个实验，让border-left不断地变大，其它两个border保持不变：<br><img src="http://imglf5.nosdn0.126.net/img/cE1DdHM4MDl2TGpERElvQUMzTmQwZ2R5cmtVYS96TUlGV2ZEZWxTaUFDMG1pOGpFYjdEK3dRPT0.png?imageView&thumbnail=1680x0&quality=96&stripmeta=0" alt="left 300"><h2 id="3-画一个有边缘色的三角形"><a href="#3-画一个有边缘色的三角形" class="headerlink" title="3. 画一个有边缘色的三角形"></a>3. 画一个有边缘色的三角形</h2>这种三角形很常见，特别是tip聊天框，聊天消息的框等等：<br><img src="https://images2015.cnblogs.com/blog/818663/201610/818663-20161022174950545-714485606.png" alt=""><br>上面实现时用了一个图标字体，跟svg差不多，但是由于高度没有那么刚好，导致看起来有点错位了。如果用css画，就不会出现这种问题。这种画法其实很简单，只是不容易想到——就是先画一个深色的三角形，然后再画一个同样大小白色的三角形盖在它上面，两个三角形错位2个像素，这样深色三角形的边缘就刚好露出一个像素</li>
+<li><strong>首先画一个深色的三角形</strong><pre><code>&lt;style&gt;
+.chat-msg {
+  width:300px;
+  height:80px;
+  border:1pxsolid#ccc;
+  position:relative;
+}
+.chat-msg:before{
+  position:absolute;
+  left:-10px;
+  top:34px;
+  border-top:6px solid transparent;
+  border-bottom:6px solid transparent;
+  border-right:10px solid #ccc;
+}
+&lt;/style&gt;
+</code></pre></li>
 </ul>
+<div class="chat-msg">hi，亲</div>
+```
+效果如下：
+![](https://images2015.cnblogs.com/blog/818663/201610/818663-20161022190911638-1099000322.png)
+**然后再画一个白色的三角形盖上去，错位两个像素**
+```
+.chat-msg:before{
+    position:absolute;
+    left:-8px;
+    top:34px;
+    border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+    border-right:10px solid #fff;
+}
+```
+效果如下：
+![](https://images2015.cnblogs.com/blog/818663/201610/818663-20161022190935123-1117305693.png)
+到这里就说明完了，上面用的属性都是CSS 2最基本的一些属性，所以没有兼容性问题。这个方法的缺点是没办法设置三角形的box-shadow的轮廓为一个三角形，所以用不了box-shadow。
+
+<p>除了画一个三角形之外，还可以画其它很多形状，像五角形、爱心等等，详见css-tricks，但是这种由于借助了transform等属性，所以兼容性没有画一个三角形的好，并且大小不好扩展，你要改它的大小，要么你知道它画的原理，然后一个个去改各个构成的属性位置和大小，要么用scale，用scale会有文档流占用空间不一致的问题。所以这种比较复杂的css画法，实用性并不是很大，还不如用个图标字体。</p>
 
       
       <!-- reward -->
