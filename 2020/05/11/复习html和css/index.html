@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">373</span>
+            <span class="post-count">955</span>
         </span>
     </span>
 
@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -177,6 +177,47 @@
 &lt;/html&gt;</code></pre><p>上面的例子是：三条样式修饰同一元素p,那么最终的样式如何呢？很显然，最后的样式是第三个样式也就是字体大小为25px,颜色为yellow。</p>
 </li>
 </ul>
+<h2 id="2-标签的作用："><a href="#2-标签的作用：" class="headerlink" title="2.标签的作用："></a>2.<a></a>标签的作用：</h2><h3 id="作用一：外部页面链接："><a href="#作用一：外部页面链接：" class="headerlink" title="作用一：外部页面链接："></a>作用一：外部页面链接：</h3><pre><code>&lt;a href=&quot;http://www.baidu.com&quot; target=&quot;_blank&gt;百度&lt;/a&gt;</code></pre><ul>
+<li>1）：这里的href规定的是指向页面的url地址</li>
+<li>2）：target指的是跳转网页的方式。target有四个属性。分别为 <strong>_blank</strong>,<strong>_parent</strong>,<strong>_self</strong>,<strong>_top</strong>.</li>
+</ul>
+<p>其中：1. _blank代表在新窗口打开页面的链接地址，如果设置则另起网页跳转;</p>
+<ol start="2">
+<li><p>_self代表在自身窗口打开页面链接，默认为self;</p>
+</li>
+<li><p>_parent代表在父窗口打开此网页；</p>
+</li>
+<li><p>_top代表的是整个窗口中打开此网页，测试结果与self相同；</p>
+</li>
+</ol>
+<h3 id="作用2：本地页面链接："><a href="#作用2：本地页面链接：" class="headerlink" title="作用2：本地页面链接："></a>作用2：本地页面链接：</h3><p>在同一个项目中，href的指向为相对路径，此处的node文件和本文件处在同一个项目中，所以直接写名字即可。</p>
+<pre><code>&lt;a href=&quot;node.html&quot;&gt;跳转node.html文件&lt;/a&gt;</code></pre><h3 id="超链接跳转有三个路径"><a href="#超链接跳转有三个路径" class="headerlink" title="超链接跳转有三个路径"></a>超链接跳转有三个路径</h3><ol>
+<li>绝对路径：从文件所在的最高级目录下开始的完整路径。</li>
+</ol>
+<ul>
+<li>1.1：访问互联网上的资源。</li>
+<li>1.2：访问本机的资源。</li>
+</ul>
+<ol start="2">
+<li>相对路径： 从文件所在的位置开始查找，资源文件所在的位置经过的路径。</li>
+</ol>
+<ul>
+<li>2.1: 当文件和资源文件在同一目录下直接可以用名称引用。</li>
+<li>2.2：资源文件在当前目录的子文件中，先进入，再引用。</li>
+<li>2.3：资源文件再当前文件的父目录中，先返回，再引用。</li>
+</ul>
+<ol start="3">
+<li>根相对路径：在服务器上使用的，只有服务器端才可以使用。<h3 id="作用三：设置锚点"><a href="#作用三：设置锚点" class="headerlink" title="作用三：设置锚点"></a>作用三：设置锚点</h3>在网页的任意位置添加一个标记，可以由任何地方跳转到这个标记处。<pre><code>&lt;p id=&quot;p1&quot;&gt;此处p标记是锚点&lt;/p&gt;
+</code></pre></li>
+</ol>
+<p><a href="" name="a1">此处a标签是锚点</a></p>
+<p><a href="#p1">跳转到p锚点</a></p>
+<p><a href="#a1">跳转到a锚点</a></p>
+<pre><code>1. 定义锚点
+1）：如果用a标签当作锚点，只需给a标签中的name传名字即可。如上面代码。
+2）：如果用其他标签当作锚点，如p标签，需要该标签附上id值
+2. 需要跳转的地方</code></pre><p><a href="#锚点记号的名称"></a></p>
+<p>```<br>(注意：a标签作为锚点则此处为a标签name属性的属性值，其他标签作为锚点时，此处为该标签的id值)</p>
 
       
       <!-- reward -->
@@ -256,6 +297,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/05/11/html%E5%A4%8D%E4%B9%A0/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            html复习
+          
+        </div>
+      </a>
     
     
       <a href="/2020/05/07/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-nav-link">
