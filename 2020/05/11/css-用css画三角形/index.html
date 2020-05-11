@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">436</span>
+            <span class="post-count">605</span>
         </span>
     </span>
 
@@ -107,7 +107,7 @@
       
 
       
-      <h2 id="用css画一个三角形："><a href="#用css画一个三角形：" class="headerlink" title="用css画一个三角形："></a>用css画一个三角形：</h2><p>三角形的场景很常见，在页面中可以看到各种各样的三角形，如图：<br><img src="https://images2015.cnblogs.com/blog/818663/201610/818663-20161022155016185-1080301711.png" alt=""><br>今天就来学习一下如何使用css来画一个三角形<br>代码如下:</p>
+      <h1 id="1-用css画一个三角形："><a href="#1-用css画一个三角形：" class="headerlink" title="1.用css画一个三角形："></a>1.用css画一个三角形：</h1><p>三角形的场景很常见，在页面中可以看到各种各样的三角形，如图：<br><img src="https://images2015.cnblogs.com/blog/818663/201610/818663-20161022155016185-1080301711.png" alt=""><br>今天就来学习一下如何使用css来画一个三角形<br>代码如下:</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 
@@ -163,7 +163,17 @@
     border-bottom: 200px solid #cc7eb1;
     border-left: 200px solid transparent;
     border-right: 200px solid transparent;
-}</code></pre><p>效果如下：<br><img src="https://img-blog.csdnimg.cn/20190809135811324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNjI3MDkwOA==,size_16,color_FFFFFF,t_70" alt=""></p>
+}</code></pre><p>效果如下：<br><img src="https://img-blog.csdnimg.cn/20190809135811324.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNjI3MDkwOA==,size_16,color_FFFFFF,t_70" alt=""><br><strong>这里是用了底部的border作为三角形，如果要取左边border，同理只需让上下两个border颜色为transparent，同时不要右边的border：</strong></p>
+<h1 id="2-控制三角形的角度；"><a href="#2-控制三角形的角度；" class="headerlink" title="2.控制三角形的角度；"></a>2.控制三角形的角度；</h1><p>上边画的是一个直角三角形，用的比较多的应该是等边三角形，那么怎么样画一个等边三角形呢？</p>
+<ul>
+<li>首先，保持border-left和border-right的大小不变，让border-bottom不断变大，观察以下形状是怎么变的。<pre><code>.triangle {
+          width: 0px;
+          height: 0px;
+          border-bottom: 300px solid #cc7eb1;
+          border-left: 200px solid transparent;
+          border-right: 200px solid transparent;
+      }</code></pre>当border-bottom变为300px时效果如下：<br><img src="http://imglf4.nosdn0.126.net/img/cE1DdHM4MDl2TGpERElvQUMzTmQwdmNmWWw4SlZ3MnZGejVsdmhoQjdwTEFBc3JoVEVnbW5RPT0.jpg?imageView&thumbnail=500x0&quality=96&stripmeta=0&type=jpg" alt=""><br>我们可以看到，成为了一个等边三角形</li>
+</ul>
 
       
       <!-- reward -->
