@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    JavaScript-作用域闭包 |  末了
+    数据结构-二叉树 |  末了
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -41,7 +41,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-作用域闭包" class="article article-type-post" itemscope
+  <article id="post-数据结构-二叉树" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -49,7 +49,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  JavaScript-作用域闭包
+  数据结构-二叉树
 </h1>
  
 
@@ -58,12 +58,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/01/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/" class="article-date">
-  <time datetime="2020-01-18T04:34:44.000Z" itemprop="datePublished">2020-01-18</time>
+      <a href="/2020/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
+  <time datetime="2020-05-07T14:58:24.000Z" itemprop="datePublished">2020-05-07</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/javaScript/">javaScript</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
   </div>
 
       
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1k</span>
+            <span class="post-count">108</span>
         </span>
     </span>
 
@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -107,147 +107,8 @@
       
 
       
-      <h1 id="深入浅出理解作用域链和闭包"><a href="#深入浅出理解作用域链和闭包" class="headerlink" title="深入浅出理解作用域链和闭包"></a>深入浅出理解作用域链和闭包</h1><ol>
-<li>闭包的定义：<a id="more"></a>
-闭包是指有权访问另一个函数作用域中的变量的函数，关键在以下两点：</li>
-</ol>
-<ul>
-<li>1.闭包是一个函数</li>
-<li>2.闭包能访问另外一个函数的作用域中的变量。</li>
-</ul>
-<ol start="2">
-<li>闭包的特性</li>
-</ol>
-<ul>
-<li>1.闭包可以访问当前函数以外的变量：</li>
-</ul>
-<pre><code>function getOuter(){
-  var name = &quot;zhangsan&quot;
-function getName(str){
-    console.log(str + name);
-}
-return getName(&#39;名字：&#39;);
-}
-getOuter();</code></pre><ul>
-<li>2.即使外部函数已经返回，闭包仍能访问外部函数定义的变量</li>
-</ul>
-<pre><code>function getOuter(){
-  var date = &#39;815&#39;;
-  function getDate(str){
-    console.log(str + date);  //访问外部的date
-  }
-  return getDate;     //外部函数返回
-}
-var today = getOuter();
-today(&#39;今天是：&#39;);   //&quot;今天是：815&quot;
-today(&#39;明天不是：&#39;);   //&quot;明天不是：815&quot;
-</code></pre><ul>
-<li><ol start="3">
-<li>闭包可以更新外部变量的值</li>
-</ol>
-</li>
-</ul>
-<pre><code>function updateCount(){
-  var count = 0;
-  function getCount(val){
-    count = val;
-    console.log(count);
-  }
-  return getCount;     //外部函数返回
-}
-var count = updateCount();
-count(815); //815
-count(816); //816
-</code></pre><h2 id="1-作用域链"><a href="#1-作用域链" class="headerlink" title="1.作用域链"></a>1.作用域链</h2><p>当访问一个变量时，解释器会首先在当前作用域查找标示符，如果没有找到，就去父作用域找，直到找到该变量的标示符或者不在父作用域中，这就是作用域链。</p>
-<p><strong>作用域链和原型继承查找的区别：</strong></p>
-<p>如果取查找一个普通对象的属性，但是在当前对象和原型中都找不到时，就会返回undefined；但查找的属性在作用域链中不存在的话就会抛出ReferenceError。</p>
-<p>作用域链的顶端是全局对象，在全局环境中定义的变量就会绑定到全局对象中。</p>
-<h1 id="JavaScript深入之从作用域链理解闭包"><a href="#JavaScript深入之从作用域链理解闭包" class="headerlink" title="JavaScript深入之从作用域链理解闭包"></a>JavaScript深入之从作用域链理解闭包</h1><p>MDN对闭包的定义为：<strong>闭包是那些能够访问自由变量的函数</strong></p>
-<p>其中<strong>自由变量</strong> 是指在函数中使用的，但既不是函数参数arguments也不是函数的局部变量的变量，其实就是另外一个函数作用域中的变量。</p>
-<p>例子：</p>
-<pre><code>function getOuter(){
-  var date = &#39;1127&#39;;
-  function getDate(str){
-    console.log(str + date);  //访问外部的date
-  }
-  return getDate(&#39;今天是：&#39;); //&quot;今天是：1127&quot;
-}
-getOuter();
-</code></pre><p>其中date既不是参数arguements，也不是局部变量，所以date是自由变量。</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><pre><code>var scope = &quot;global scope&quot;;
-function checkscope(){
-    var scope = &quot;local scope&quot;;
-    function f(){
-        return scope;
-    }
-    return f;
-}
+      <h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><h3 id="树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类"><a href="#树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类" class="headerlink" title="树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类"></a>树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类</h3><p><strong>二叉树是一种典型的树状结构，就像他的名字一样二叉树是每个节点最多有两个子树的树结构，通常子树被称为“左子树”和“右子树”</strong></p>
 
-var foo = checkscope(); // foo指向函数f
-foo();                    // 调用函数f()
-</code></pre><p>简要的执行过程如下：</p>
-<ol>
-<li><p>进入全局代码，创建全局执行上下文，全局执行上下文压入执行上下文栈</p>
-</li>
-<li><p>全局执行上下文初始化</p>
-</li>
-<li><p>执行 checkscope 函数，创建 checkscope 函数执行上下文，checkscope 执行上下文被压入执行上下文栈</p>
-</li>
-<li><p>checkscope 执行上下文初始化，创建变量对象、作用域链、this等</p>
-</li>
-<li><p>checkscope 函数执行完毕，checkscope 执行上下文从执行上下文栈中弹出</p>
-</li>
-<li><p>执行 f 函数，创建 f 函数执行上下文，f 执行上下文被压入执行上下文栈</p>
-</li>
-<li><p>f 执行上下文初始化，创建变量对象、作用域链、this等</p>
-</li>
-<li><p>f 函数执行完毕，f 函数上下文从执行上下文栈中弹出</p>
-</li>
-</ol>
-<h1 id="JavaScript深入之闭包面试题解"><a href="#JavaScript深入之闭包面试题解" class="headerlink" title="JavaScript深入之闭包面试题解"></a>JavaScript深入之闭包面试题解</h1><p>由于作用域链机制的影响，闭包只能取得内部函数的最后一个值，这引起的一个副作用就是如果内部函数在一个循环中，那么变量的值始终为最后一个值。</p>
-<pre><code>var data = [];
-for (var i = 0; i &lt; 3; i++) {
-  data[i] = function () {
-    console.log(i);
-  };
-}
-data[0]();    // 3
-data[1]();    // 3
-data[2]();    // 3</code></pre><p>如果要强制返回预期的结果，怎么办？？？</p>
-<h2 id="1-方法一：立即执行函数"><a href="#1-方法一：立即执行函数" class="headerlink" title="1.方法一：立即执行函数"></a>1.方法一：立即执行函数</h2><pre><code>for (var i = 0; i &lt; 3; i++) {
-    (function(num) {
-        setTimeout(function() {
-            console.log(num);
-        }, 1000);
-    })(i);
-}
-// 0
-// 1
-// 2</code></pre><h2 id="1-方法二：返回一个匿名函数赋值"><a href="#1-方法二：返回一个匿名函数赋值" class="headerlink" title="1.方法二：返回一个匿名函数赋值"></a>1.方法二：返回一个匿名函数赋值</h2><pre><code>var data = [];
-
-for (var i = 0; i &lt; 3; i++) {
-  data[i] = (function (num) {
-      return function(){
-          console.log(num);
-      }
-  })(i);
-}
-
-data[0]();    // 0
-data[1]();    // 1
-data[2]();    // 2
-</code></pre><h2 id="1-方法三：使用ES6中的let"><a href="#1-方法三：使用ES6中的let" class="headerlink" title="1.方法三：使用ES6中的let"></a>1.方法三：使用ES6中的let</h2><pre><code>var data = [];
-
-for (let i = 0; i &lt; 3; i++) {
-  data[i] = function () {
-    console.log(i);
-  };
-}
-
-data[0]();
-data[1]();
-data[2]();
-</code></pre>
       
       <!-- reward -->
       
@@ -311,7 +172,7 @@ data[2]();
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/01/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -327,19 +188,19 @@ data[2]();
   
   <nav class="article-nav">
     
-      <a href="/2020/01/19/this%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/" class="article-nav-link">
+      <a href="/2020/05/11/%E5%A4%8D%E4%B9%A0html%E5%92%8Ccss/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            this全面解析
+            复习html和css
           
         </div>
       </a>
     
     
-      <a href="/2020/01/16/JavaScript%E6%B7%B1%E5%85%A5%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/" class="article-nav-link">
+      <a href="/2020/05/07/%E7%AE%97%E6%B3%95/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">JavaScript-深入执行上下文和变量对象</div>
+        <div class="article-nav-title">算法</div>
       </a>
     
   </nav>

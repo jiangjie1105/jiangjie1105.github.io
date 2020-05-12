@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    JavaScript-前端进阶之调用堆栈 |  末了
+    JavaScript-作用域闭包 |  末了
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -41,7 +41,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-调用堆栈" class="article article-type-post" itemscope
+  <article id="post-JavaScript-作用域闭包" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -49,7 +49,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  JavaScript-前端进阶之调用堆栈
+  JavaScript-作用域闭包
 </h1>
  
 
@@ -58,8 +58,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/01/16/%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/" class="article-date">
-  <time datetime="2020-01-16T07:07:17.000Z" itemprop="datePublished">2020-01-16</time>
+      <a href="/2020/01/18/JavaScript-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/" class="article-date">
+  <time datetime="2020-01-18T04:34:44.000Z" itemprop="datePublished">2020-01-18</time>
 </a>
       
   <div class="article-category">
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.7k</span>
+            <span class="post-count">1k</span>
         </span>
     </span>
 
@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">6 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -107,103 +107,147 @@
       
 
       
-      <h1 id="1-js中的执行上下文和执行栈"><a href="#1-js中的执行上下文和执行栈" class="headerlink" title="1.js中的执行上下文和执行栈"></a>1.js中的执行上下文和执行栈</h1><a id="more"></a>
-<p><strong>1.首先要理解什么是执行上下文，执行上下文就是当前JavaScript代码在被解析和执行时所在环境的抽象概念</strong></p>
-<h2 id="执行上下文的类型"><a href="#执行上下文的类型" class="headerlink" title="执行上下文的类型"></a>执行上下文的类型</h2><p>执行上下文有三种类型：</p>
-<ul>
-<li><strong>全局执行上下文</strong>：只有一个，浏览器中的全局对象就是windows对象，this指向这个全局对象</li>
-<li><strong>函数执行上下文</strong>：存在无数个，只有函数在被调用时才会被创建，每次调用函数都会创建一个新的执行上下文</li>
-<li><strong>Eval函数执行上下文</strong>：很少使用，不建议使用，指的是运行在eval函数中的代码</li>
-</ul>
-<p><strong>执行上下文就是JavaScript 在被解析和运行时环境的抽象概念，JavaScript 运行任何代码都是在执行上下文环境中运行的，执行上下文包括三个周期：创建——运行——销毁，重点说一下创建环节。</strong></p>
-<p>创建环节（函数被调用，但未被执行），会执行三件事情</p>
-<ul>
-<li>创建变量对象，首先初始化函数的arguments对象，提升函数声明和变量声明，从近到远查找函数运行所需要的变量</li>
-<li>创建作用域链，作用域就是一个独立的地盘，让变量不会相互干扰，当前作用域没有定义的变量，这成为 自由变量。自由变量会向上一直寻找，要到创建这个函数的那个作用域中取值——是“创建”，而不是“调用”，如果最终没有就为undefined。这种层层之间就构成了作用域链。</li>
-<li>确定this指向，this、apply、call的指向</li>
-</ul>
-<p>看下面的例子</p>
-<pre><code>function test(arg){
-     // 1. 形参 arg 是 &quot;hi&quot;
-    // 2. 因为函数声明比变量声明优先级高，所以此时 arg 是 function
-    console.log(arg);
-    var arg = &#39;hello&#39;;
-    function arg (){
-        console.log(&quot;hello world&quot;);
-    }
-    var age = &quot;word&quot;;
-    console.log(arg);
-}
-test(&#39;hi&#39;);
-</code></pre><p>上面这个例子，函数内函数声明比变量声明优先，所以arg被覆盖，并且被提升，所以第一次打印不会报错，打出了arg函数，后面变量被覆盖成为hello。</p>
-<p>函数执行多了就会有多个执行上下文，怎么管理这些执行上下文呢？？？？</p>
-<p>JavaScript引擎创建了执行栈来管理执行上下文，可以把执行栈认为成一个储存函数调用的栈结构，遵循的时先进后出的原则。如：<br><img src="https://user-gold-cdn.xitu.io/2019/3/17/1698ac2c8ca10784?imageslim" alt=""><br>上面代码结果为100</p>
-<p>再看下面的代码</p>
-<pre><code>var a = &#39;Hello World!&#39;;
-
-function first() {  
-  console.log(&#39;Inside first function&#39;);  
-  second();  
-  console.log(&#39;Again inside first function&#39;);  
-}
-
-function second() {  
-  console.log(&#39;Inside second function&#39;);  
-}
-
-first();  
-console.log(&#39;Inside Global Execution Context&#39;);
-
-// Inside first function
-// Inside second function
-// Again inside first function
-// Inside Global Execution Context
-</code></pre><p>以下是我对这些代码的理解：首先，当这段js代码首次运行时，js引擎会创建一个全局执行上下文，并将其放在栈顶，此时栈只有这个全局执行上下文，然后<strong>当函数调用时（也就是代码中先调用的这个first函数）</strong>，js引擎会创建一个函数（first）的执行上下文，并将其压栈放在刚刚的全局执行上下文上方，在first函数之中又调用了second函数，这时js引擎又会创建一个新的执行函数执行上下文并将其放在执行栈的顶端，此时运行second函数，当second函数运行完之后，他的执行上下文从当前栈顶弹出，然后把执行上下文控制权交给了当前执行栈的下一个执行上下文，也就是first（）函数的执行上下文，当first（）函数执行完成后，他的执行上下文从当前的执行栈中弹出，把执行上下文控制权交给了全局执行上下文，一旦所有代码执行完毕后，js引擎就把全局执行上下文从执行栈中移除。</p>
-<p>由此看出：</p>
-<ul>
-<li>JavaScript引擎是单线程执行，所有代码都是排队执行。</li>
-<li>一开始执行的是全局代码，首先创建全局的执行上下文，然后将该执行上下文压入执行栈中。</li>
-<li>每当执行一个函数，就会创建该函数的执行上下文，然后将其压入执行栈的顶部，函数执行完成后，执行上下文从底部退出，等待垃圾回收。</li>
-<li>游览器js总是访问执行栈顶层的执行上下文。</li>
-<li>全局上下文只有唯一的一个，它在浏览器关闭时出栈</li>
-</ul>
-<p>即压栈运行</p>
-<h1 id="执行上下文的创建"><a href="#执行上下文的创建" class="headerlink" title="执行上下文的创建"></a>执行上下文的创建</h1><p>执行上下文分两个阶段创建：</p>
-<ol>
-<li>创建阶段</li>
-<li>执行阶段</li>
+      <h1 id="深入浅出理解作用域链和闭包"><a href="#深入浅出理解作用域链和闭包" class="headerlink" title="深入浅出理解作用域链和闭包"></a>深入浅出理解作用域链和闭包</h1><ol>
+<li>闭包的定义：<a id="more"></a>
+闭包是指有权访问另一个函数作用域中的变量的函数，关键在以下两点：</li>
 </ol>
-<h2 id="创建阶段："><a href="#创建阶段：" class="headerlink" title="创建阶段："></a>创建阶段：</h2><ul>
-<li>1.确定this的值，也被称为This Binding。</li>
-<li>2.LexicalEnvironment（词法环境）组件被创建</li>
-<li>3.VariableEnvironment（变量环境）组件被创建</li>
+<ul>
+<li>1.闭包是一个函数</li>
+<li>2.闭包能访问另外一个函数的作用域中的变量。</li>
 </ul>
-<p>This Binding:</p>
-<p>在全局执行上下文中，this 的值指向全局对象，在浏览器中，this 的值指向 window 对象。<br>在函数执行上下文中，this 的值取决于函数的调用方式。如果它被一个对象引用调用，那么 this 的值被设置为该对象，否则 this 的值被设置为全局对象或 undefined（严格模式下）。例如：</p>
-<pre><code>
-let person = {  
-  name: &#39;peter&#39;,  
-  birthYear: 1994,  
-  calcAge: function() {  
-    console.log(2018 - this.birthYear);  
-  }  
+<ol start="2">
+<li>闭包的特性</li>
+</ol>
+<ul>
+<li>1.闭包可以访问当前函数以外的变量：</li>
+</ul>
+<pre><code>function getOuter(){
+  var name = &quot;zhangsan&quot;
+function getName(str){
+    console.log(str + name);
+}
+return getName(&#39;名字：&#39;);
+}
+getOuter();</code></pre><ul>
+<li>2.即使外部函数已经返回，闭包仍能访问外部函数定义的变量</li>
+</ul>
+<pre><code>function getOuter(){
+  var date = &#39;815&#39;;
+  function getDate(str){
+    console.log(str + date);  //访问外部的date
+  }
+  return getDate;     //外部函数返回
+}
+var today = getOuter();
+today(&#39;今天是：&#39;);   //&quot;今天是：815&quot;
+today(&#39;明天不是：&#39;);   //&quot;明天不是：815&quot;
+</code></pre><ul>
+<li><ol start="3">
+<li>闭包可以更新外部变量的值</li>
+</ol>
+</li>
+</ul>
+<pre><code>function updateCount(){
+  var count = 0;
+  function getCount(val){
+    count = val;
+    console.log(count);
+  }
+  return getCount;     //外部函数返回
+}
+var count = updateCount();
+count(815); //815
+count(816); //816
+</code></pre><h2 id="1-作用域链"><a href="#1-作用域链" class="headerlink" title="1.作用域链"></a>1.作用域链</h2><p>当访问一个变量时，解释器会首先在当前作用域查找标示符，如果没有找到，就去父作用域找，直到找到该变量的标示符或者不在父作用域中，这就是作用域链。</p>
+<p><strong>作用域链和原型继承查找的区别：</strong></p>
+<p>如果取查找一个普通对象的属性，但是在当前对象和原型中都找不到时，就会返回undefined；但查找的属性在作用域链中不存在的话就会抛出ReferenceError。</p>
+<p>作用域链的顶端是全局对象，在全局环境中定义的变量就会绑定到全局对象中。</p>
+<h1 id="JavaScript深入之从作用域链理解闭包"><a href="#JavaScript深入之从作用域链理解闭包" class="headerlink" title="JavaScript深入之从作用域链理解闭包"></a>JavaScript深入之从作用域链理解闭包</h1><p>MDN对闭包的定义为：<strong>闭包是那些能够访问自由变量的函数</strong></p>
+<p>其中<strong>自由变量</strong> 是指在函数中使用的，但既不是函数参数arguments也不是函数的局部变量的变量，其实就是另外一个函数作用域中的变量。</p>
+<p>例子：</p>
+<pre><code>function getOuter(){
+  var date = &#39;1127&#39;;
+  function getDate(str){
+    console.log(str + date);  //访问外部的date
+  }
+  return getDate(&#39;今天是：&#39;); //&quot;今天是：1127&quot;
+}
+getOuter();
+</code></pre><p>其中date既不是参数arguements，也不是局部变量，所以date是自由变量。</p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><pre><code>var scope = &quot;global scope&quot;;
+function checkscope(){
+    var scope = &quot;local scope&quot;;
+    function f(){
+        return scope;
+    }
+    return f;
 }
 
-person.calcAge();   
-// &#39;this&#39; 指向 &#39;person&#39;, 因为 &#39;calcAge&#39; 是被 &#39;person&#39; 对象引用调用的。
+var foo = checkscope(); // foo指向函数f
+foo();                    // 调用函数f()
+</code></pre><p>简要的执行过程如下：</p>
+<ol>
+<li><p>进入全局代码，创建全局执行上下文，全局执行上下文压入执行上下文栈</p>
+</li>
+<li><p>全局执行上下文初始化</p>
+</li>
+<li><p>执行 checkscope 函数，创建 checkscope 函数执行上下文，checkscope 执行上下文被压入执行上下文栈</p>
+</li>
+<li><p>checkscope 执行上下文初始化，创建变量对象、作用域链、this等</p>
+</li>
+<li><p>checkscope 函数执行完毕，checkscope 执行上下文从执行上下文栈中弹出</p>
+</li>
+<li><p>执行 f 函数，创建 f 函数执行上下文，f 执行上下文被压入执行上下文栈</p>
+</li>
+<li><p>f 执行上下文初始化，创建变量对象、作用域链、this等</p>
+</li>
+<li><p>f 函数执行完毕，f 函数上下文从执行上下文栈中弹出</p>
+</li>
+</ol>
+<h1 id="JavaScript深入之闭包面试题解"><a href="#JavaScript深入之闭包面试题解" class="headerlink" title="JavaScript深入之闭包面试题解"></a>JavaScript深入之闭包面试题解</h1><p>由于作用域链机制的影响，闭包只能取得内部函数的最后一个值，这引起的一个副作用就是如果内部函数在一个循环中，那么变量的值始终为最后一个值。</p>
+<pre><code>var data = [];
+for (var i = 0; i &lt; 3; i++) {
+  data[i] = function () {
+    console.log(i);
+  };
+}
+data[0]();    // 3
+data[1]();    // 3
+data[2]();    // 3</code></pre><p>如果要强制返回预期的结果，怎么办？？？</p>
+<h2 id="1-方法一：立即执行函数"><a href="#1-方法一：立即执行函数" class="headerlink" title="1.方法一：立即执行函数"></a>1.方法一：立即执行函数</h2><pre><code>for (var i = 0; i &lt; 3; i++) {
+    (function(num) {
+        setTimeout(function() {
+            console.log(num);
+        }, 1000);
+    })(i);
+}
+// 0
+// 1
+// 2</code></pre><h2 id="1-方法二：返回一个匿名函数赋值"><a href="#1-方法二：返回一个匿名函数赋值" class="headerlink" title="1.方法二：返回一个匿名函数赋值"></a>1.方法二：返回一个匿名函数赋值</h2><pre><code>var data = [];
 
-let calculateAge = person.calcAge;  
-calculateAge();  
-// &#39;this&#39; 指向全局 window 对象,因为没有给出任何对象引用
-</code></pre><h2 id="词法环境："><a href="#词法环境：" class="headerlink" title="词法环境："></a>词法环境：</h2><p>简而言之，词法环境是一个包含标识符变量映射的结构。（这里的标识符表示变量/函数的名称，变量是对实际对象【包括函数类型对象】或原始值的引用）</p>
-<p>在词法环境中，有两个组成部分：（1）环境记录（environment record） （2）对外部环境的引用</p>
-<p>环境记录是存储变量和函数声明的实际位置。<br>对外部环境的引用意味着它可以访问其外部词法环境。</p>
-<p>词法环境有两种类型：</p>
-<ul>
-<li>全局环境（在全局执行上下文中）是一个没有外部环境的词法环境。全局环境的外部环境引用为 null。它拥有一个全局对象（window 对象）及其关联的方法和属性（例如数组方法）以及任何用户自定义的全局变量，this 的值指向这个全局对象。</li>
-<li>函数环境，用户在函数中定义的变量被存储在环境记录中。对外部环境的引用可以是全局环境，也可以是包含内部函数的外部函数环境。<br>（对环境记录和变量环境还不太清楚）</li>
-</ul>
+for (var i = 0; i &lt; 3; i++) {
+  data[i] = (function (num) {
+      return function(){
+          console.log(num);
+      }
+  })(i);
+}
 
+data[0]();    // 0
+data[1]();    // 1
+data[2]();    // 2
+</code></pre><h2 id="1-方法三：使用ES6中的let"><a href="#1-方法三：使用ES6中的let" class="headerlink" title="1.方法三：使用ES6中的let"></a>1.方法三：使用ES6中的let</h2><pre><code>var data = [];
+
+for (let i = 0; i &lt; 3; i++) {
+  data[i] = function () {
+    console.log(i);
+  };
+}
+
+data[0]();
+data[1]();
+data[2]();
+</code></pre>
       
       <!-- reward -->
       
@@ -267,7 +311,7 @@ calculateAge();
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/01/16/%E8%B0%83%E7%94%A8%E5%A0%86%E6%A0%88/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/01/18/JavaScript-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,19 +327,19 @@ calculateAge();
   
   <nav class="article-nav">
     
-      <a href="/2020/01/16/JavaScript%E6%B7%B1%E5%85%A5%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/" class="article-nav-link">
+      <a href="/2020/01/19/this%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            JavaScript-深入执行上下文和变量对象
+            this全面解析
           
         </div>
       </a>
     
     
-      <a href="/2020/01/15/DOM/" class="article-nav-link">
+      <a href="/2020/01/16/JavaScript%E6%B7%B1%E5%85%A5%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">JavaScript-DOM</div>
+        <div class="article-nav-title">JavaScript-深入执行上下文和变量对象</div>
       </a>
     
   </nav>
