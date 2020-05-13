@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">0</span>
+            <span class="post-count">602</span>
         </span>
     </span>
 
@@ -78,7 +78,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -89,6 +89,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -101,7 +103,31 @@
       
 
       
-      
+      <p>JavaScript中常常要用到数据类型的判断，这是一个很重要的问题，今天在这里总结以下我所理解的js数据类型判断的几种方式</p>
+<h1 id="1-typeof关键字"><a href="#1-typeof关键字" class="headerlink" title="1.typeof关键字"></a>1.typeof关键字</h1><pre><code>console.log(typeof 2);               // number
+console.log(typeof true);            // boolean
+console.log(typeof &#39;str&#39;);           // string
+console.log(typeof []);              // object     []数组的数据类型在 typeof 中被解释为 object
+console.log(typeof function(){});    // function
+console.log(typeof {});              // object
+console.log(typeof undefined);       // undefined
+console.log(typeof null);            // object     null 的数据类型被typeof 解释为 object
+</code></pre><p>可以看到，typeof几乎可以正确的检测大多数数据类型，但是空数组和null被typeof解释为object类型，这种说法不能说不对，只能说不够精确而已，那么要如何解决这个问题，就要用到下面这种方法。</p>
+<h1 id="2-instanceof关键字"><a href="#2-instanceof关键字" class="headerlink" title="2.instanceof关键字"></a>2.instanceof关键字</h1><pre><code>
+console.log(2 instanceof Number);                 // false
+console.log(true instanceof Boolean);           // false 
+console.log(&#39;str&#39; instanceof String);           // false  
+console.log([] instanceof Array);                  // true
+console.log(function(){} instanceof Function);     // true
+console.log({} instanceof Object);                 //true</code></pre><p>以上结果显示，只有array，object，function被精确判断，其他（number，boolean，string）都不能被准确判断其实instanceof在<a href = "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">MDN中</a>这样解释：instanceof运算符用来测试一个对象在其原型链中是否存在一个构造函数的<font color = "red">prototype</font>属性，意思就是判断对象是否是某一数据类型（如Array）的实例，重点关注以下<font color = "red">判断一个对象是否是数据类型的实例</font>，在这里字面量值 2，true ，‘str’不是实例，所以值是flase<br>请看下面的例子:<br><img src="https://img-blog.csdn.net/20180712224943444?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pqeV9hbmRyb2lkX2Jsb2c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>其中字面值被实例化了，所以输出true。</p>
+<p>接着我们看一看  undefined和null，说说为什么这两货比较特殊，实际上按理来说null的值就是所属null，undefined的值就是所属undefined，但是事实并非如此：控制台输出如下结果<br><img src="https://img-blog.csdn.net/20180712225906487?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pqeV9hbmRyb2lkX2Jsb2c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>浏览器认为null，undefined不是构造器。但是在typeof中你已经发现了，typeof null的结果是object，typeof undefined的结果是undefined，这是怎么回事呢？<br>尤其是null，其实这是js发展过程中的重大失误，早期准备更改null的类型为null，由于当时已经由大量网站使用了null，如果更改，将导致很多网站的逻辑出现漏洞问题，就没有更改过来，于是一直遗留到现在。</p>
+<h1 id="3-constructor"><a href="#3-constructor" class="headerlink" title="3.constructor"></a>3.constructor</h1><pre><code>console.log((2).constructor === Number);
+console.log((true).constructor === Boolean);
+console.log((&#39;str&#39;).constructor === String);
+console.log(([]).constructor === Array);
+console.log((function() {}).constructor === Function);
+console.log(({}).constructor === Object);
+</code></pre>
       
       <!-- reward -->
       
