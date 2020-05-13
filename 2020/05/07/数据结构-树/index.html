@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    数据结构-二叉树 |  末了
+    数据结构-树 |  末了
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -41,7 +41,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-数据结构-二叉树" class="article article-type-post" itemscope
+  <article id="post-数据结构-树" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -49,7 +49,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  数据结构-二叉树
+  数据结构-树
 </h1>
  
 
@@ -58,7 +58,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91/" class="article-date">
+      <a href="/2020/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91/" class="article-date">
   <time datetime="2020-05-07T14:58:24.000Z" itemprop="datePublished">2020-05-07</time>
 </a>
       
@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">108</span>
+            <span class="post-count">324</span>
         </span>
     </span>
 
@@ -107,7 +107,19 @@
       
 
       
-      <h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><h3 id="树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类"><a href="#树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类" class="headerlink" title="树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类"></a>树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类</h3><p><strong>二叉树是一种典型的树状结构，就像他的名字一样二叉树是每个节点最多有两个子树的树结构，通常子树被称为“左子树”和“右子树”</strong></p>
+      <h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><h3 id="树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类"><a href="#树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类" class="headerlink" title="树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类"></a>树是用来模拟具有树状结构性质的数据集合。根据它的特性可以分为很多类，二叉树这种结构是树最简单，应用最广泛的种类</h3><p><strong>二叉树是一种典型的树状结构，就像他的名字一样二叉树是每个节点最多有两个子树的树结构，通常子树被称为“左子树”和“右子树”</strong><br><img src="https://i.loli.net/2019/08/18/3HdPxIMFOQv9yEz.jpg" alt="二叉树基本形态"></p>
+<h2 id="树遵循："><a href="#树遵循：" class="headerlink" title="树遵循："></a>树遵循：</h2><ul>
+<li>它有唯一的一个根节点，没有节点即为空树</li>
+<li>除根节点外，每个环节都有并且仅有一个父节点</li>
+<li>节点间不能闭环<h2 id="树的概念"><a href="#树的概念" class="headerlink" title="树的概念"></a>树的概念</h2></li>
+<li>拥有相同父节点的节点，互称为兄弟节点</li>
+<li>节点的深度：从根节点到该节点所经历的边的个数</li>
+<li>节点的高度： 节点到叶节点的最长路径</li>
+<li>书的高度： 根节点的高度<br>例如：<br><img src="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQT15RHEWNRApwADdjTDNVPOuzECMWv7B0aCxr4PkcTLMnAX2w62tFmI7h4MdoopF0FdlibmzkSOcwg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></li>
+</ul>
+<p><strong>上树中，BCD互为兄弟节点，其中节点B的高度为2，节点B的深度为1，树的高度为3</strong></p>
+<h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>二叉树，顾名思义，最多仅有两个子节点的树（最多能分两个叉的树）,<br>图：<img src="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQT15RHEWNRApwADdjTDNVPOCr8Bb0Ywl9CGicd8cbktIXjOS4CFB2cWB6OZrnwqNpfiadf4TRsGibdvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></p>
+<h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p>二叉树中，每一个节点的左右子树的高度差不能大于一，称为平衡二叉树。<br><img src="https://mmbiz.qpic.cn/mmbiz_png/pfCCZhlbMQT15RHEWNRApwADdjTDNVPO9gnv6CAkTicSZApmUwOlzj79g0VPnXic9H0N86ZlfjpnEvB7V7X9ov4Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt=""></p>
 
       
       <!-- reward -->
@@ -172,7 +184,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%BA%8C%E5%8F%89%E6%A0%91/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/05/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A0%91/" alt="微信分享二维码">
     </div>
 </div>
 
