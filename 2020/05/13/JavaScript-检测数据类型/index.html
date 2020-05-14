@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">996</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -147,10 +147,13 @@ console.log(a.call(null));
 </code></pre><p>我们使用的是Object对象的原型方法toString，使用call狸猫换太子，接用Object的toString方法<br><img src="https://img-blog.csdn.net/20180712231743219?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pqeV9hbmRyb2lkX2Jsb2c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
 <p>结果精确的显示了我们需要的数据类型。</p>
 <h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>上述我们提到了四种方法检测数据类型，其中：</p>
-<h2 id="1-typeof："><a href="#1-typeof：" class="headerlink" title="1.typeof："></a>1.typeof：</h2><p>typeof对于：number，string，undefined，boolean，symbol，function，对象object 都有精准的解释，但是对数组和null解释不精确</p>
-<h2 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2.instanceof"></a>2.instanceof</h2><p>instanceof基于原型链的查找，它是一个操作符，判断是一个对象是否是另一个对象的实例。返回true或false。他对于引用数据类型（object function array）可以精确判断，但是对于基本数据类型不能精准判断 <font color="yellow">因为它们不是一个数据类型的实例</font></p>
+<h2 id="1-typeof："><a href="#1-typeof：" class="headerlink" title="1.typeof："></a>1.typeof：</h2><p>typeof对于：number，string，undefined，boolean，symbol，function，对象object 都有精准的解释，但是对数组和null解释不精确<br>优点：能快速检查undefined,string,number,boolean类型</p>
+<p>缺点：当类型为object,null,array时都会返回object,所以不能区分这三类</p>
+<h2 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2.instanceof"></a>2.instanceof</h2><p>instanceof基于原型链的查找，它是一个操作符，判断是一个对象是否是另一个对象的实例。返回true或false。他对于引用数据类型（object function array）可以精确判断，但是对于基本数据类型不能精准判断 <font color="yellow">因为它们不是一个数据类型的实例</font><br> 优点：能检测array,function,object类型 </p>
+<p> 缺点:检测不了number,boolean,string</p>
 <h2 id="3-constructor-1"><a href="#3-constructor-1" class="headerlink" title="3.constructor"></a>3.constructor</h2><p>constructor看起来比较完美，但是更改了对象的原型就无法判断了</p>
-<h2 id="4-Object-prototyp-toString-call"><a href="#4-Object-prototyp-toString-call" class="headerlink" title="4.Object.prototyp.toString.call()"></a>4.Object.prototyp.toString.call()</h2><p>这种方法比较通用，建议选择</p>
+<h2 id="4-Object-prototyp-toString-call"><a href="#4-Object-prototyp-toString-call" class="headerlink" title="4.Object.prototyp.toString.call()"></a>4.Object.prototyp.toString.call()</h2><p>优点：能准确的判断所有的类型。</p>
+<p>缺点：写法过于繁琐</p>
 
       
       <!-- reward -->
