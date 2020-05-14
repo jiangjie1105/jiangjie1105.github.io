@@ -69,7 +69,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">602</span>
+            <span class="post-count">996</span>
         </span>
     </span>
 
@@ -78,7 +78,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">2 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -127,7 +127,31 @@ console.log((&#39;str&#39;).constructor === String);
 console.log(([]).constructor === Array);
 console.log((function() {}).constructor === Function);
 console.log(({}).constructor === Object);
-</code></pre>
+</code></pre><p>结果如下：<br><img src="https://img-blog.csdn.net/20180712230652201?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pqeV9hbmRyb2lkX2Jsb2c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""><br>可以看到，用constructor来判断类型看起来比较完美，然而，如果创建一个对象，更改它的原型，这种方法也变得不可靠了。</p>
+<pre><code>function Fn(){}
+Fn.prototype = new Array();
+var f = new Fn();
+
+console.log(f.constructor===Fn);//false
+console.log(f.constructor===Array);//true</code></pre><p>如此轻易的就更改了constructor，到这里，我们应该需要一个新的大杀器，最精准的判断数据类型，那么可以用下面的方法</p>
+<h1 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h1><pre><code>var a = Object.prototype.toString
+
+console.log(a.call(1));
+console.log(a.call(true));
+console.log(a.call(&#39;str&#39;));
+console.log(a.call([]));
+console.log(a.call(function(){}));
+console.log(a.call({}));
+console.log(a.call(undefined));
+console.log(a.call(null));
+</code></pre><p>我们使用的是Object对象的原型方法toString，使用call狸猫换太子，接用Object的toString方法<br><img src="https://img-blog.csdn.net/20180712231743219?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pqeV9hbmRyb2lkX2Jsb2c=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<p>结果精确的显示了我们需要的数据类型。</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>上述我们提到了四种方法检测数据类型，其中：</p>
+<h2 id="1-typeof："><a href="#1-typeof：" class="headerlink" title="1.typeof："></a>1.typeof：</h2><p>typeof对于：number，string，undefined，boolean，symbol，function，对象object 都有精准的解释，但是对数组和null解释不精确</p>
+<h2 id="2-instanceof"><a href="#2-instanceof" class="headerlink" title="2.instanceof"></a>2.instanceof</h2><p>instanceof基于原型链的查找，它是一个操作符，判断是一个对象是否是另一个对象的实例。返回true或false。他对于引用数据类型（object function array）可以精确判断，但是对于基本数据类型不能精准判断 <font color="yellow">因为它们不是一个数据类型的实例</font></p>
+<h2 id="3-constructor-1"><a href="#3-constructor-1" class="headerlink" title="3.constructor"></a>3.constructor</h2><p>constructor看起来比较完美，但是更改了对象的原型就无法判断了</p>
+<h2 id="4-Object-prototyp-toString-call"><a href="#4-Object-prototyp-toString-call" class="headerlink" title="4.Object.prototyp.toString.call()"></a>4.Object.prototyp.toString.call()</h2><p>这种方法比较通用，建议选择</p>
+
       
       <!-- reward -->
       
