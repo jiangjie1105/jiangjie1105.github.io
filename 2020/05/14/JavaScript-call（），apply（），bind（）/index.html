@@ -73,7 +73,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">38</span>
+            <span class="post-count">533</span>
         </span>
     </span>
 
@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -93,6 +93,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -105,7 +107,7 @@
       
 
       
-      <p>先看以下例子</p>
+      <p>先看以下例子<br>例一：</p>
 <pre><code>var name = &quot;小王&quot;,age = 17;
 var obj = {
     name:&quot;小张&quot;,
@@ -114,10 +116,58 @@ var obj = {
         console.log(this.name + &quot;的年龄&quot; + this.age);
     }
 }
-myFun();
+obj.objAge;
+obj.myFun();</code></pre><p>例二：</p>
+<pre><code>var name = &quot;小姜&quot;;
+function foo(){
+    console.log(this.name);
+}
+foo();//小姜</code></pre><p>比较一下二者的区别可以发现，例一中的this指向的是obj，例二的this指向的是全局window；</p>
+<h2 id="1-call-apply-bind-都是用来重新定义this这个对象的-如："><a href="#1-call-apply-bind-都是用来重新定义this这个对象的-如：" class="headerlink" title="1. call(),apply(),bind()都是用来重新定义this这个对象的,如："></a>1. call(),apply(),bind()都是用来重新定义this这个对象的,如：</h2><pre><code>var name = &quot;小王&quot;,age = 17;
+var obj={
+    name:&quot;小张&quot;,
+    ObjAge:this.age,
+    myFun:function(){
+        console.log(this.name + &quot;的年龄&quot; + this.age);
+    }
+}
+var db = {
+    name:&#39;小姜&#39;,
+    age:6
+}
+obj.myFun.call(db);
+obj.myFun.apply(db);
+obj.myFun.bind(db)();
 
+//小姜的年龄6
+//小姜的年龄6
+//小姜的年龄6
+</code></pre><p>以上除了bind方法需要加（）外，结果返回都是一致的，由此可以得出结论，bind返回一个新的函数，必须调用它才能执行。</p>
+<h2 id="2-对比call-apply-bind-传参情况下"><a href="#2-对比call-apply-bind-传参情况下" class="headerlink" title="2. 对比call(),apply(),bind()传参情况下;"></a>2. 对比call(),apply(),bind()传参情况下;</h2><pre><code>var name = &quot;小王&quot;,age = 17;
+var obj={
+    name:&quot;小张&quot;,
+    ObjAge:this.age,
+    myFun:function(fr,t){
+        console.log(this.name + &quot;的年龄&quot; + this.age + &quot;岁来自&quot; + fr + &quot;去往&quot; + t);
+    }
+}
+var db = {
+    name:&#39;小姜&#39;,
+    age:6
+}
+obj.myFun.call(db,&#39;西安&#39;,&#39;上海&#39;);
+obj.myFun.apply(db,[&#39;西安&#39;,&#39;上海&#39;]);
+obj.myFun.bind(db,&#39;西安&#39;,&#39;上海&#39;)();
+//小姜的年龄6岁来自西安去往上海
+//小姜的年龄6岁来自西安去往上海
+//小姜的年龄6岁来自西安去往上海</code></pre><ul>
+<li>不难看出，三者有着微妙的差距，三者括号中第一个参数都是this的指向对象，第二个参数的差别就来了，</li>
+<li>call()的参数是直接放进去的，第二个第三个到第n个参数全部用逗号隔开，直接放到后面;obj.myFun.call(db,’西安’, … ,’string’ )；</li>
+<li>apply的所有参数都必须放在一个数组里面传进去：<br>obj.myFun.apply(db,[‘西安’, …, ‘string’ ]);</li>
+<li>bind除了后面要加一个括号调用外，参数和call是一样的。</li>
+<li>三者的参数并不都限制于string类型，也允许是各种类型，如函数，obj等</li>
+</ul>
 
-</code></pre>
       
       <!-- reward -->
       
