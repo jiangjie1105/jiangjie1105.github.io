@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>git | JiangJie's Blog</title><meta name="description" content="git的使用git 目前最先进的分布式管理系统，用起来！！！ 因为自己之前学习过git，本次就对一些git基本指令做一次复习。 时光机穿梭git带来的体验是美妙的，所以我们可以体验到时光穿梭的感觉，对于工作区文件来说，我们甚至可以回到过去，改变某些事情，再穿梭回来，太神奇了！！ 版本回退如果多次添加文件或项目（git add）,如果想要知道自己想回退的是哪个版本的话，可以用git log查看日志。"><meta name="keywords" content="git"><meta name="author" content="姜杰"><meta name="copyright" content="姜杰"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="git"><meta name="twitter:description" content="git的使用git 目前最先进的分布式管理系统，用起来！！！ 因为自己之前学习过git，本次就对一些git基本指令做一次复习。 时光机穿梭git带来的体验是美妙的，所以我们可以体验到时光穿梭的感觉，对于工作区文件来说，我们甚至可以回到过去，改变某些事情，再穿梭回来，太神奇了！！ 版本回退如果多次添加文件或项目（git add）,如果想要知道自己想回退的是哪个版本的话，可以用git log查看日志。"><meta name="twitter:image" content="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500"><meta property="og:type" content="article"><meta property="og:title" content="git"><meta property="og:url" content="http://yoursite.com/2021/08/04/git/"><meta property="og:site_name" content="JiangJie's Blog"><meta property="og:description" content="git的使用git 目前最先进的分布式管理系统，用起来！！！ 因为自己之前学习过git，本次就对一些git基本指令做一次复习。 时光机穿梭git带来的体验是美妙的，所以我们可以体验到时光穿梭的感觉，对于工作区文件来说，我们甚至可以回到过去，改变某些事情，再穿梭回来，太神奇了！！ 版本回退如果多次添加文件或项目（git add）,如果想要知道自己想回退的是哪个版本的话，可以用git log查看日志。"><meta property="og:image" content="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500"><meta property="article:published_time" content="2021-08-04T02:27:48.000Z"><meta property="article:modified_time" content="2021-08-04T06:52:51.125Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://yoursite.com/2021/08/04/git/"><link rel="next" title="复习篇-1" href="http://yoursite.com/2021/03/18/%E5%A4%8D%E4%B9%A0%E7%AF%87%EF%BC%881%EF%BC%89/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">51</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">Tags</div><div class="length_num">8</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">Categories</div><div class="length_num">11</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#git的使用"><span class="toc-number">1.</span> <span class="toc-text">git的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#时光机穿梭"><span class="toc-number">1.1.</span> <span class="toc-text">时光机穿梭</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#版本回退"><span class="toc-number">1.1.1.</span> <span class="toc-text">版本回退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工作区和暂存区"><span class="toc-number">1.1.2.</span> <span class="toc-text">工作区和暂存区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理修改"><span class="toc-number">1.1.3.</span> <span class="toc-text">管理修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销修改"><span class="toc-number">1.1.4.</span> <span class="toc-text">撤销修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除文件"><span class="toc-number">1.1.5.</span> <span class="toc-text">删除文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支管理（重要）"><span class="toc-number">1.2.</span> <span class="toc-text">分支管理（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建和删除分支"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建和删除分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决冲突"><span class="toc-number">1.2.2.</span> <span class="toc-text">解决冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BUG分支"><span class="toc-number">1.2.3.</span> <span class="toc-text">BUG分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feature分支"><span class="toc-number">1.2.4.</span> <span class="toc-text">Feature分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多人合作"><span class="toc-number">1.2.5.</span> <span class="toc-text">多人合作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reabase"><span class="toc-number">1.2.6.</span> <span class="toc-text">Reabase</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标签管理"><span class="toc-number">1.3.</span> <span class="toc-text">标签管理</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div class="post-bg" id="nav" style="background-image: url(https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">JiangJie's Blog</a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">git</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="Created 2021-08-04 10:27:48"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2021-08-04</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="Updated 2021-08-04 14:52:51"><i class="fa fa-history" aria-hidden="true"></i> Updated 2021-08-04</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h1><p>git 目前最先进的分布式管理系统，用起来！！！</p>
+<p>因为自己之前学习过git，本次就对一些git基本指令做一次复习。</p>
+<h2 id="时光机穿梭"><a href="#时光机穿梭" class="headerlink" title="时光机穿梭"></a>时光机穿梭</h2><p>git带来的体验是美妙的，所以我们可以体验到时光穿梭的感觉，对于工作区文件来说，我们甚至可以回到过去，改变某些事情，再穿梭回来，太神奇了！！</p>
+<h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><p>如果多次添加文件或项目（git add）,如果想要知道自己想回退的是哪个版本的话，可以用<font color=Red>git log</font>查看日志。</p>
+<p>首先，必须要知道当前的版本是哪个版本，在git中，用Head表示当前版本，上一个版本就是Head^,上上一个版本就是Head^^,以此类推，所以当我们想要回退版本时，可以使用<font color=Red size=6>Git reset</font>命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git reset --hard Head^</span><br></pre></td></tr></table></figure>
+
+<p>此刻回到过去了，想回到未来怎么办？注意，只要控制台没关，之前的log日志还在的话，可以使用 git reset–hard (版本号) 就可以回到未来。</p>
+<p>那如果命令台关了呢？</p>
+<p>不要慌，这个时候可以用git reflog 命令， 它可以记录我们的每一次命令，顺便看到你想去版本的版本号，然后再使用 git reset 操作就可以了!</p>
+<p>本节小结：</p>
+<ul>
+<li>HEAD 指向的就是当前版本，因此可以在历史中穿梭，使用命令：git reset –hard commit_id </li>
+<li>穿梭前用git log 查看提交历史，以便确定回退到哪个版本。</li>
+<li>要重返未来，用git reflog查看命令历史，以便确定回到未来的哪个版本。</li>
+</ul>
+<h3 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h3><p>很简单，git的版本库里面有很多东西，最重要的就是 stage （暂存区），和一个git默认为我们创建的master分支，以及指向master分支的一个指针叫HEAD。<br>如下图所示：<br><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0"></img></p>
+<p>说白了，git 在操作提交文件时，git add 操作会把文件提交到暂存区（可以进行多次提交），然后git commit 操作可以一次性的把暂存区的所有内容都提交到分支，此时如果用 git status 查看状态，可以得到提示：<br>nothing to commit,working is tree clean(工作区就是“干净的”)</p>
+<p>此时版本库就变成了这样：<br><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src=https://www.liaoxuefeng.com/files/attachments/919020100829536/0></img></p>
+<h3 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h3><p>一句话概括，如果有两次修改，那么每一次修改后，都应该提交到暂存区（git add） 然后再进行提交（git commit）这样就不会发生第二次修改没被提交的情况啦。</p>
+<h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><p>  当我们的修改没有达到满意的效果，想要撤销掉修改，怎么办？？<br>  可以分情况来看：</p>
+<ol>
+<li>按照上面的图来看：<br><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src=https://www.liaoxuefeng.com/files/attachments/919020100829536/0></img><br>如果只是在工作区想要撤销，那么可以直接使用git checkout – file来撤销工作区的修改，这里需要主义的是 checkout后边一定是两个 –<br>因为一个- 的意思是切换分支，这是两种完全不同的概念。<br>总之: git checkout – file 就是把这个文件回到最近一次add 或者 commit 前 的状态。</li>
+</ol>
+<p>2.如果已经提交到暂存区了（git add）那么可以使用 git reset HEAD (File)可以把暂存区的修改撤销掉，重新放回工作区。—-git reset命令既可以回退版本，也可以把暂存区的修改回退到工作区。回退到工作区后再进行一次 git checkout –file 后 就可以了。</p>
+<ol start="3">
+<li>如果已经commit 到了版本库，但是还没有提交到远程库，那么可以使用版本回退：git reset –hard HEAD^ （上一个版本）</li>
+</ol>
+<h3 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h3><p>如果在工作区加了一个文件：比如 readme.txt 然后提交到了版本库中的暂存区。<br><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src=https://www.liaoxuefeng.com/files/attachments/919020037470528/0></img><br>然后在本地（也就是工作区删除了这个文件），这个时候不用担心，可以从版本库中恢复文件，还记得撤销操作吗？ 使用 git checkout – readme.txt 就可以回到删除之前的状态了。</p>
+<p><font color=red size=4>git checkout</font>其实是用版本库里的版本来替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”</p>
+<h2 id="分支管理（重要）"><a href="#分支管理（重要）" class="headerlink" title="分支管理（重要）"></a>分支管理（重要）</h2><h3 id="创建和删除分支"><a href="#创建和删除分支" class="headerlink" title="创建和删除分支"></a>创建和删除分支</h3><ul>
+<li>创建分支：  git branch dev(创建dev分支)</li>
+<li>切换分支：  git checkout dev(切换到dev分支)  或者 git switch dev<br>以上两个命令可以简写成  git checkout -b dev (即创建并切换到dev分支)</li>
+<li>查看分支：  git branch</li>
+<li>合并分支：  git merge dev(注意：意思是在master分支上合入dev分支，得先切换到master分支上)</li>
+<li>删除分支：  git branch -d dev(删除dev分支)</li>
+</ul>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><p>如果两个分支都改动并提交了，merge时就可能发生冲突，解决冲突的办法就是把git合并失败的分支手动编辑为我们需要的内容，再提交。 用git log –graph命令可以看到分支合并图。</p>
+<h3 id="BUG分支"><a href="#BUG分支" class="headerlink" title="BUG分支"></a>BUG分支</h3><p>修改bug时使用，当接到一个代号101的修bug任务，本能的会想到新建一个issue 分支来修复bug，但是，当前正在dev上进行的工作还没有提交，并不是不想提交，而是工作进行了一半，还没法提交，比如预计还需一天才提交，但是bug要在两小时内完成，怎么办？？？？</p>
+<p>这个时候，可以用到Stash功能，可以把现场的工作“储藏”起来，等恢复后继续工作：</p>
+<p>git stash 后  再使用git status 查看工作区 就可以发现，工作区是干净的。</p>
+<p>git stash 后，工作被放在了“储藏室”，这个时候假如master分支上有bug，就可以先切回master分支，在master分支上新建修改bug的分支后，合并、删除，就可以了 再回到dev分支上继续开发，用git stash list可以查看stash的内容，要恢复藏起来的内容，有两中方法：</p>
+<ol>
+<li>用git stash apply 恢复，但是恢复后，stash的内容并没有删除，需要用 git stash drop 来删除stash的内容。</li>
+<li>第二种方式是用git stash pop 来恢复，用这种方法 stash 的内容被删除了。</li>
+</ol>
+<p>可以多次stash ，恢复的时候，先用git stash list 查看，然后恢复指定的stash,用命令： git stash apply stash@{0}</p>
+<p>问题又来了，如果bug是在master分支上，那么它有bug，我们的dev分支上是不是就也有bug呢？</p>
+<p>问题是肯定的，因为dev分支就是从master上来的，那么想要不繁琐的回到dev分支上新建改bug的分支，那么可以有一个Cherry-pick命令。可以复制一个特定的提交到当前分支：  git Cheery-pick xxxxx  （这个xxxxx就是在master上改bug后提交的这个操作（是一个commit操作。））</p>
+<h3 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h3><p>开发一个新功能，可以新建一个feature分支，此时如果这个分支不要了，那就使用git branch -d  newbranch 删除，会发现删不掉，因为这个分支创建了没合并， 这个时候就可以强行删除： git branch -D newbranch</p>
+<h3 id="多人合作"><a href="#多人合作" class="headerlink" title="多人合作"></a>多人合作</h3><p>查看远程库信息：用 git remote</p>
+<p>或者用 git remote -v 显示更详细的信息。</p>
+<p>推送分支：远程分支默认为origin ，所以推送分支就可以使用 git push origin master （意思是把master分支推送到远程库）</p>
+<p>如果要推送其他分支，比如dev，就改成：git push origin dev</p>
+<p>当合作者从远程clone了你的项目，它只能看到master分支，如果他要在dev分支上开发，就必须创建远程origin 的 dev 分支到本地，于是他用这个命令创建本地dev分支： git checkout -b dev origin/dev 现在就可以在dev分支上继续修改，然后时不时把dev分支推送到远程：</p>
+<p>如果两个人提交（push）出现失败的情况： 比如他先提交，你再提交就会失败，这样就得先pull下来，然后本地merge后，再进行提交，如果本地merge有冲突，就要先解决冲突。</p>
+<p>git pull 如果拉不下来，是因为本地dev分支没和远程建立连接，就得先建立连接： git branch –set-upstream branch-name origin/branch-name</p>
+<p>再pull，就会成功了。</p>
+<h3 id="Reabase"><a href="#Reabase" class="headerlink" title="Reabase"></a>Reabase</h3><p>就是把分支的提交变成一个直线，目的是使我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。</p>
+<h2 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h2><p>发布一个版本时，通常在版本库中打一个标签（tag） 创建标签: git tag 《name》  如  git tag v1.0</p>
+<p>查看：git tag  标签和commit 挂钩  想要给之前的打标签，就可以git log 查看日志，找到那个commit 然后 git tag v0.9 xxxxx (这个xxxxx)就是commit</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">姜杰</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2021/08/04/git/">http://yoursite.com/2021/08/04/git/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/git/">git</a></div><div class="post_share"><div class="social-share" data-image="https://images.pexels.com/photos/2031758/pexels-photo-2031758.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2021/03/18/%E5%A4%8D%E4%B9%A0%E7%AF%87%EF%BC%881%EF%BC%89/"><img class="next_cover" data-src="https://images.pexels.com/photos/2031758/pexels-photo-2031758.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">复习篇-1</div></div></a></div></nav></article></main><footer id="footer" style="background-image: url(https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 姜杰</div><div class="framework-info"><span>Driven </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="Traditional Chinese and Simplified Chinese Conversion" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script defer id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="false"></script><script id="ribbon_piao" mobile="true" src="/js/third-party/piao.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/js/third-party/canvas-nest.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script src="/js/third-party/click_heart.js"></script></body></html>
